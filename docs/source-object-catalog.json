@@ -1,0 +1,1131 @@
+[
+  {
+    "key": "cfo-sap-fi-aa",
+    "module_key": "cfo",
+    "skill": "Capital allocation",
+    "confidence": "verified",
+    "object": "SAP ANLA / ANLZ / ANLC",
+    "source_system": "SAP FI-AA",
+    "object_type": "erp_tables",
+    "purpose": "Asset accounting master, time-dependent cost-center assignment and asset value tables.",
+    "fields": [
+      "BUKRS",
+      "ANLN1",
+      "ANLN2",
+      "ANLKL",
+      "KOSTL",
+      "KANSW"
+    ],
+    "adapter_status": "sample_workbook_available"
+  },
+  {
+    "key": "cfo-sap-investment-management",
+    "module_key": "cfo",
+    "skill": "Capital allocation",
+    "confidence": "verified",
+    "object": "SAP IMAK / IMPR",
+    "source_system": "SAP Investment Management",
+    "object_type": "erp_tables",
+    "purpose": "Appropriation requests and investment-program positions.",
+    "fields": [
+      "IMAK-POSNR"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "cfo-sap-copa",
+    "module_key": "cfo",
+    "skill": "Financial strategy",
+    "confidence": "verified",
+    "object": "SAP CO-PA CE1xxxx",
+    "source_system": "SAP CO-PA",
+    "object_type": "erp_table_family",
+    "purpose": "Operating-concern profitability segments; suffix is client/configuration specific.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "cfo-long-range-model",
+    "module_key": "cfo",
+    "skill": "Financial strategy",
+    "confidence": "generic",
+    "object": "Long-range model (Excel)",
+    "source_system": "Customer workbook",
+    "object_type": "file",
+    "purpose": "Multi-year financial model; no single standard application or schema.",
+    "fields": [],
+    "adapter_status": "generic_upload_available"
+  },
+  {
+    "key": "cfo-sec-edgar",
+    "module_key": "cfo",
+    "skill": "Regulatory & tax literacy",
+    "confidence": "verified",
+    "object": "SEC EDGAR / XBRL",
+    "source_system": "SEC EDGAR",
+    "object_type": "public_data",
+    "purpose": "Structured public-filing data for SEC citations and filings.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "cfo-sap-tax-keys",
+    "module_key": "cfo",
+    "skill": "Regulatory & tax literacy",
+    "confidence": "verified",
+    "object": "SAP T007A / T007S",
+    "source_system": "SAP",
+    "object_type": "erp_tables",
+    "purpose": "Tax keys and tax-code names.",
+    "fields": [
+      "MWSKZ"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "cfo-coso-erm",
+    "module_key": "cfo",
+    "skill": "Risk oversight",
+    "confidence": "verified",
+    "object": "COSO ERM Framework",
+    "source_system": "COSO",
+    "object_type": "framework",
+    "purpose": "Enterprise risk-register structure grounded in the published COSO framework.",
+    "fields": [],
+    "adapter_status": "reference_only"
+  },
+  {
+    "key": "cfo-internal-audit-pdf",
+    "module_key": "cfo",
+    "skill": "Risk oversight",
+    "confidence": "generic",
+    "object": "Internal audit reports (PDF)",
+    "source_system": "Customer documents",
+    "object_type": "document",
+    "purpose": "Audit-report artifact; no single standard GRC table was identified in the ledger.",
+    "fields": [],
+    "adapter_status": "generic_upload_available"
+  },
+  {
+    "key": "controller-sap-gl-master",
+    "module_key": "corporate-controller",
+    "skill": "GAAP & accounting standards",
+    "confidence": "verified",
+    "object": "SAP SKA1 / SKB1",
+    "source_system": "SAP",
+    "object_type": "erp_tables",
+    "purpose": "G/L account master, chart of accounts and company-code segment.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "controller-oracle-account-combinations",
+    "module_key": "corporate-controller",
+    "skill": "GAAP & accounting standards",
+    "confidence": "verified",
+    "object": "Oracle GL_CODE_COMBINATIONS",
+    "source_system": "Oracle Fusion",
+    "object_type": "oracle_table",
+    "purpose": "Chart-of-accounts segment combinations.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "controller-sap-acdoca",
+    "module_key": "corporate-controller",
+    "skill": "Financial close & consolidation",
+    "confidence": "verified",
+    "object": "SAP ACDOCA",
+    "source_system": "SAP S/4HANA",
+    "object_type": "erp_table",
+    "purpose": "Universal Journal line items for FI/CO postings.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "controller-oracle-journals",
+    "module_key": "corporate-controller",
+    "skill": "Financial close & consolidation",
+    "confidence": "verified",
+    "object": "Oracle GL_JE_HEADERS / GL_JE_LINES",
+    "source_system": "Oracle Fusion",
+    "object_type": "oracle_tables",
+    "purpose": "Journal batch headers and entered/accounted debit-credit lines.",
+    "fields": [],
+    "adapter_status": "sample_workbook_available_in_internal_audit_module"
+  },
+  {
+    "key": "controller-sap-change-docs",
+    "module_key": "corporate-controller",
+    "skill": "Internal controls",
+    "confidence": "verified",
+    "object": "SAP CDHDR / CDPOS",
+    "source_system": "SAP",
+    "object_type": "erp_tables",
+    "purpose": "Change-document audit trail for master-data/configuration changes.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "controller-sox-rcm",
+    "module_key": "corporate-controller",
+    "skill": "Internal controls",
+    "confidence": "generic",
+    "object": "SOX Risk & Control Matrix (Excel)",
+    "source_system": "Customer workbook",
+    "object_type": "file",
+    "purpose": "Semi-standardized control matrix; not one fixed regulatory schema.",
+    "fields": [],
+    "adapter_status": "generic_upload_available"
+  },
+  {
+    "key": "plant-sap-coep",
+    "module_key": "plant-controller",
+    "skill": "Plant-level cost accounting",
+    "confidence": "verified",
+    "object": "SAP COEP",
+    "source_system": "SAP CO",
+    "object_type": "erp_table",
+    "purpose": "Controlling object line items by period.",
+    "fields": [
+      "KOKRS",
+      "OBJNR",
+      "GJAHR",
+      "PERIO",
+      "KSTAR",
+      "WRTTP",
+      "WKGBTR"
+    ],
+    "adapter_status": "sample_workbook_available_in_fpa_module"
+  },
+  {
+    "key": "plant-sap-coss-cosp",
+    "module_key": "plant-controller",
+    "skill": "Plant-level cost accounting",
+    "confidence": "corroborated",
+    "object": "SAP COSS / COSP",
+    "source_system": "SAP CO",
+    "object_type": "erp_tables",
+    "purpose": "Cost-center summary and plan records; full field list not independently pulled in the source ledger.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "plant-sap-mbew",
+    "module_key": "plant-controller",
+    "skill": "Inventory valuation & cycle counts",
+    "confidence": "verified",
+    "object": "SAP MBEW",
+    "source_system": "SAP MM",
+    "object_type": "erp_table",
+    "purpose": "Material valuation, standard/moving-average price and total stock value.",
+    "fields": [
+      "MATNR",
+      "BWKEY",
+      "VPRSV",
+      "VERPR",
+      "STPRS",
+      "PEINH",
+      "LBKUM",
+      "SALK3"
+    ],
+    "adapter_status": "sample_workbook_available"
+  },
+  {
+    "key": "plant-sap-mseg-mkpf",
+    "module_key": "plant-controller",
+    "skill": "Inventory valuation & cycle counts",
+    "confidence": "verified",
+    "object": "SAP MSEG / MKPF",
+    "source_system": "SAP MM",
+    "object_type": "erp_tables",
+    "purpose": "Goods-movement document header and line records.",
+    "fields": [
+      "MBLNR",
+      "WERKS",
+      "MATNR",
+      "MENGE",
+      "BWART",
+      "DMBTR"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "plant-sap-bom",
+    "module_key": "plant-controller",
+    "skill": "BOM accuracy",
+    "confidence": "verified",
+    "object": "SAP STKO / STPO",
+    "source_system": "SAP PP",
+    "object_type": "erp_tables",
+    "purpose": "Bill-of-materials header and component items.",
+    "fields": [
+      "STLNR",
+      "STLKN",
+      "IDNRK",
+      "MENGE"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "plant-oracle-bom",
+    "module_key": "plant-controller",
+    "skill": "BOM accuracy",
+    "confidence": "verified",
+    "object": "Oracle BOM_COMPONENTS_B",
+    "source_system": "Oracle Fusion",
+    "object_type": "oracle_table",
+    "purpose": "BOM component lines and effectivity dates.",
+    "fields": [
+      "COMPONENT_ITEM_ID",
+      "COMPONENT_QUANTITY",
+      "EFFECTIVITY_DATE",
+      "DISABLE_DATE"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "plant-sap-capex",
+    "module_key": "plant-controller",
+    "skill": "Capex tracking",
+    "confidence": "verified",
+    "object": "SAP AUFK + IMAK_M",
+    "source_system": "SAP",
+    "object_type": "erp_tables",
+    "purpose": "Internal orders and investment-program positions.",
+    "fields": [
+      "AUFNR",
+      "AUART",
+      "KTEXT",
+      "POSID"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "plant-oracle-assets",
+    "module_key": "plant-controller",
+    "skill": "Capex tracking",
+    "confidence": "verified",
+    "object": "Oracle FA_ADDITIONS_B + FA_BOOKS",
+    "source_system": "Oracle Fusion",
+    "object_type": "oracle_tables",
+    "purpose": "Asset additions/CIP and depreciation-book information.",
+    "fields": [
+      "DATE_PLACED_IN_SERVICE",
+      "COST"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "cost-sap-keko",
+    "module_key": "cost-accounting",
+    "skill": "Standard costing",
+    "confidence": "verified",
+    "object": "SAP KEKO",
+    "source_system": "SAP CO-PC",
+    "object_type": "erp_table",
+    "purpose": "Product costing header.",
+    "fields": [
+      "KALNR",
+      "MATNR",
+      "BWKEY",
+      "BWTAR",
+      "KADKY",
+      "BWDAT"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "cost-oracle-cst-item-costs",
+    "module_key": "cost-accounting",
+    "skill": "Standard costing",
+    "confidence": "verified",
+    "object": "Oracle CST_ITEM_COSTS",
+    "source_system": "Oracle Fusion",
+    "object_type": "oracle_table",
+    "purpose": "Item cost by cost type.",
+    "fields": [
+      "MATERIAL_COST",
+      "RESOURCE_COST",
+      "OVERHEAD_COST",
+      "OUTSIDE_PROCESSING_COST"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "cost-sap-routing",
+    "module_key": "cost-accounting",
+    "skill": "BOM costing",
+    "confidence": "verified",
+    "object": "SAP PLPO",
+    "source_system": "SAP PP",
+    "object_type": "erp_table",
+    "purpose": "Routing operations and standard-value fields.",
+    "fields": [
+      "PLNNR",
+      "PLNKN",
+      "VORNR",
+      "STEUS",
+      "VGW01-VGW06"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "cost-sap-bom",
+    "module_key": "cost-accounting",
+    "skill": "BOM costing",
+    "confidence": "verified",
+    "object": "SAP STKO / STPO",
+    "source_system": "SAP PP",
+    "object_type": "erp_tables",
+    "purpose": "BOM inputs for cost roll-up.",
+    "fields": [
+      "STLNR",
+      "STLKN",
+      "IDNRK",
+      "MENGE"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "cost-oracle-wip-variance",
+    "module_key": "cost-accounting",
+    "skill": "Variance analysis",
+    "confidence": "verified",
+    "object": "Oracle WIP_PERIOD_BALANCES",
+    "source_system": "Oracle Cost Management",
+    "object_type": "oracle_table",
+    "purpose": "Period-to-date material/resource/overhead/scrap variance by WIP entity.",
+    "fields": [
+      "ORGANIZATION_ID",
+      "WIP_ENTITY_ID",
+      "ACCT_PERIOD_ID",
+      "TL_MATERIAL_VAR",
+      "TL_RESOURCE_VAR",
+      "TL_SCRAP_VAR"
+    ],
+    "adapter_status": "sample_workbook_available"
+  },
+  {
+    "key": "cost-sap-production-orders",
+    "module_key": "cost-accounting",
+    "skill": "Variance analysis",
+    "confidence": "corroborated",
+    "object": "SAP AFKO / AFPO",
+    "source_system": "SAP PP",
+    "object_type": "erp_tables",
+    "purpose": "Production-order header/item; variance itself is report-calculated from actual vs target cost.",
+    "fields": [
+      "AUFNR",
+      "GAMNG",
+      "POSNR"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "fpa-sap-faglflext",
+    "module_key": "fpa",
+    "skill": "Financial modeling",
+    "confidence": "verified",
+    "object": "SAP FAGLFLEXT",
+    "source_system": "SAP New G/L",
+    "object_type": "erp_table",
+    "purpose": "New General Ledger totals table.",
+    "fields": [
+      "RBUKRS",
+      "RACCT",
+      "RCNTR",
+      "PRCTR",
+      "RLDNR",
+      "RVERS"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "fpa-planning-platforms",
+    "module_key": "fpa",
+    "skill": "Financial modeling",
+    "confidence": "corroborated",
+    "object": "Workday Adaptive Planning / Anaplan / Oracle Hyperion EPM",
+    "source_system": "Planning platforms",
+    "object_type": "planning_platform",
+    "purpose": "Planning tool exports feeding the financial model.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "fpa-sap-coep",
+    "module_key": "fpa",
+    "skill": "Forecasting",
+    "confidence": "verified",
+    "object": "SAP COEP",
+    "source_system": "SAP CO",
+    "object_type": "erp_table",
+    "purpose": "Actual-versus-plan/forecast records distinguished by WRTTP/VERSN.",
+    "fields": [
+      "WRTTP",
+      "VERSN"
+    ],
+    "adapter_status": "sample_workbook_available"
+  },
+  {
+    "key": "fpa-oracle-gl-balances",
+    "module_key": "fpa",
+    "skill": "Forecasting",
+    "confidence": "corroborated",
+    "object": "Oracle GL_BALANCES",
+    "source_system": "Oracle Fusion",
+    "object_type": "oracle_table",
+    "purpose": "Actual, budget and encumbrance balances.",
+    "fields": [
+      "ACTUAL_FLAG"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "fpa-sap-variance-report",
+    "module_key": "fpa",
+    "skill": "Variance analysis",
+    "confidence": "corroborated",
+    "object": "SAP S_ALR_87013611",
+    "source_system": "SAP report",
+    "object_type": "erp_report",
+    "purpose": "Cost Centers: Actual/Plan/Variance report.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "fpa-sap-cosp",
+    "module_key": "fpa",
+    "skill": "Variance analysis",
+    "confidence": "verified",
+    "object": "SAP COSP",
+    "source_system": "SAP CO",
+    "object_type": "erp_table",
+    "purpose": "Cost-center plan totals.",
+    "fields": [
+      "LEDNR",
+      "OBJNR",
+      "GJAHR",
+      "WRTTP",
+      "VERSN",
+      "KSTAR"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "fpa-scenario-dimension",
+    "module_key": "fpa",
+    "skill": "Scenario planning",
+    "confidence": "corroborated",
+    "object": "Planning-tool version/scenario dimension",
+    "source_system": "Planning platform",
+    "object_type": "planning_dimension",
+    "purpose": "Version and scenario dimensions found across planning tools; field names vary by vendor.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "fpa-market-data",
+    "module_key": "fpa",
+    "skill": "Scenario planning",
+    "confidence": "generic",
+    "object": "External market data feed",
+    "source_system": "External provider to be selected",
+    "object_type": "external_feed",
+    "purpose": "Commodity/FX assumption inputs; no single provider is standard.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "treasury-oracle-cash-statements",
+    "module_key": "treasury",
+    "skill": "Cash forecasting & positioning",
+    "confidence": "verified",
+    "object": "Oracle CE_STATEMENT_HEADERS / CE_STATEMENT_LINES",
+    "source_system": "Oracle Cash Management",
+    "object_type": "oracle_tables",
+    "purpose": "Bank statement header and line items.",
+    "fields": [
+      "FLOW_INDICATOR",
+      "AMOUNT",
+      "VALUE_DATE",
+      "RECON_STATUS"
+    ],
+    "adapter_status": "sample_workbook_available"
+  },
+  {
+    "key": "treasury-bank-formats",
+    "module_key": "treasury",
+    "skill": "Cash forecasting & positioning",
+    "confidence": "verified",
+    "object": "SWIFT MT940/MT942 & BAI2",
+    "source_system": "Bank file formats",
+    "object_type": "file_format",
+    "purpose": "Bank statement interchange formats.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "treasury-sap-house-banks",
+    "module_key": "treasury",
+    "skill": "Banking relations",
+    "confidence": "verified",
+    "object": "SAP T012",
+    "source_system": "SAP FI",
+    "object_type": "erp_table",
+    "purpose": "House-bank master.",
+    "fields": [
+      "MANDT",
+      "BUKRS",
+      "HBKID"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "treasury-afp-fees",
+    "module_key": "treasury",
+    "skill": "Banking relations",
+    "confidence": "verified",
+    "object": "AFP Account Analysis Statement",
+    "source_system": "Association for Financial Professionals",
+    "object_type": "document_standard",
+    "purpose": "Bank fee/service statement with industry service codes.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "treasury-kyriba",
+    "module_key": "treasury",
+    "skill": "FX & liquidity risk mitigation",
+    "confidence": "verified",
+    "object": "Kyriba",
+    "source_system": "Kyriba TMS",
+    "object_type": "platform",
+    "purpose": "TMS exposure/position reporting and commodity-risk module.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "treasury-fpml",
+    "module_key": "treasury",
+    "skill": "FX & liquidity risk mitigation",
+    "confidence": "corroborated",
+    "object": "FpML FX forward confirmation",
+    "source_system": "FpML standard",
+    "object_type": "message_standard",
+    "purpose": "Standardized confirmation-message format for FX derivatives.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "tax-oracle-zx-lines",
+    "module_key": "tax",
+    "skill": "Direct & indirect tax compliance",
+    "confidence": "verified",
+    "object": "Oracle ZX_LINES",
+    "source_system": "Oracle Fusion Tax",
+    "object_type": "oracle_table",
+    "purpose": "Tax determination line.",
+    "fields": [
+      "TAX_REGIME_ID",
+      "TAX_RATE",
+      "TAX_JURISDICTION_ID",
+      "TAX_AMT",
+      "TAXABLE_AMT"
+    ],
+    "adapter_status": "sample_workbook_available"
+  },
+  {
+    "key": "tax-sap-bset",
+    "module_key": "tax",
+    "skill": "Direct & indirect tax compliance",
+    "confidence": "verified",
+    "object": "SAP BSET",
+    "source_system": "SAP FI",
+    "object_type": "erp_table",
+    "purpose": "Tax data attached to a posted accounting document.",
+    "fields": [
+      "BUKRS",
+      "BELNR",
+      "GJAHR",
+      "MWSKZ",
+      "HWSTE",
+      "HWBAS",
+      "TXJCD"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "tax-irs-1120",
+    "module_key": "tax",
+    "skill": "Tax planning",
+    "confidence": "verified",
+    "object": "IRS Form 1120",
+    "source_system": "IRS",
+    "object_type": "government_form",
+    "purpose": "U.S. corporate income-tax return document.",
+    "fields": [],
+    "adapter_status": "reference_only"
+  },
+  {
+    "key": "tax-onesource",
+    "module_key": "tax",
+    "skill": "Tax planning",
+    "confidence": "corroborated",
+    "object": "Thomson Reuters ONESOURCE Tax Provision",
+    "source_system": "Thomson Reuters",
+    "object_type": "platform",
+    "purpose": "ASC 740 income-tax provision workpaper software.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "tax-cbp-7501",
+    "module_key": "tax",
+    "skill": "Cross-border & customs duty awareness",
+    "confidence": "verified",
+    "object": "CBP Form 7501",
+    "source_system": "U.S. Customs and Border Protection",
+    "object_type": "government_form",
+    "purpose": "Customs entry summary.",
+    "fields": [],
+    "adapter_status": "reference_only"
+  },
+  {
+    "key": "tax-hts",
+    "module_key": "tax",
+    "skill": "Cross-border & customs duty awareness",
+    "confidence": "verified",
+    "object": "Harmonized Tariff Schedule",
+    "source_system": "USITC",
+    "object_type": "public_reference",
+    "purpose": "Official tariff-classification schedule.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "audit-iia-standards",
+    "module_key": "internal-audit",
+    "skill": "Risk-based audit planning",
+    "confidence": "verified",
+    "object": "IIA Global Internal Audit Standards / IPPF",
+    "source_system": "IIA",
+    "object_type": "standard",
+    "purpose": "Standards used to structure the audit universe and annual plan.",
+    "fields": [],
+    "adapter_status": "reference_only"
+  },
+  {
+    "key": "audit-platforms",
+    "module_key": "internal-audit",
+    "skill": "Risk-based audit planning",
+    "confidence": "corroborated",
+    "object": "AuditBoard / Workiva",
+    "source_system": "GRC/audit software",
+    "object_type": "platform",
+    "purpose": "Audit-management platforms that host audit universe and risk-based plan.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "audit-coso-controls",
+    "module_key": "internal-audit",
+    "skill": "Internal-controls testing",
+    "confidence": "verified",
+    "object": "COSO Internal Control – Integrated Framework",
+    "source_system": "COSO",
+    "object_type": "framework",
+    "purpose": "Control Environment, Risk Assessment, Control Activities, Information & Communication, Monitoring.",
+    "fields": [],
+    "adapter_status": "reference_only"
+  },
+  {
+    "key": "audit-sox-rcm",
+    "module_key": "internal-audit",
+    "skill": "Internal-controls testing",
+    "confidence": "corroborated",
+    "object": "SOX 404 Risk & Control Matrix (Excel)",
+    "source_system": "Customer workbook",
+    "object_type": "file",
+    "purpose": "Control type/significance/frequency/COSO-component/owner fields; schema varies by customer.",
+    "fields": [],
+    "adapter_status": "generic_upload_available"
+  },
+  {
+    "key": "audit-oracle-journals",
+    "module_key": "internal-audit",
+    "skill": "Fraud risk assessment",
+    "confidence": "verified",
+    "object": "Oracle GL_JE_HEADERS / GL_JE_LINES",
+    "source_system": "Oracle Fusion",
+    "object_type": "oracle_tables",
+    "purpose": "Journal header/lines for journal-entry testing.",
+    "fields": [
+      "JE_HEADER_ID",
+      "JE_BATCH_ID",
+      "JE_CATEGORY",
+      "JE_SOURCE",
+      "ENTERED_DR",
+      "ENTERED_CR",
+      "ACCOUNTED_DR",
+      "ACCOUNTED_CR"
+    ],
+    "adapter_status": "sample_workbook_available"
+  },
+  {
+    "key": "audit-fraud-guide",
+    "module_key": "internal-audit",
+    "skill": "Fraud risk assessment",
+    "confidence": "verified",
+    "object": "ACFE/COSO Fraud Risk Management Guide, 2nd Edition",
+    "source_system": "ACFE/COSO",
+    "object_type": "framework",
+    "purpose": "Named methodology for fraud-risk assessment.",
+    "fields": [],
+    "adapter_status": "reference_only"
+  },
+  {
+    "key": "risk-archer",
+    "module_key": "risk-management",
+    "skill": "Enterprise risk identification",
+    "confidence": "corroborated",
+    "object": "RSA Archer",
+    "source_system": "Archer IRM",
+    "object_type": "platform",
+    "purpose": "Enterprise and operational risk management module.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "risk-metricstream",
+    "module_key": "risk-management",
+    "skill": "Enterprise risk identification",
+    "confidence": "corroborated",
+    "object": "MetricStream",
+    "source_system": "MetricStream GRC",
+    "object_type": "platform",
+    "purpose": "Risk register and key-risk-indicator tracking.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "risk-sap-vtbfha",
+    "module_key": "risk-management",
+    "skill": "Commodity price exposure",
+    "confidence": "verified",
+    "object": "SAP VTBFHA",
+    "source_system": "SAP Treasury and Risk Management",
+    "object_type": "erp_table",
+    "purpose": "Financial transaction record for treasury/risk management.",
+    "fields": [
+      "RFHA"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "risk-cme-lme",
+    "module_key": "risk-management",
+    "skill": "Commodity price exposure",
+    "confidence": "verified",
+    "object": "CME Group / LME settlement data",
+    "source_system": "CME/LME",
+    "object_type": "market_data",
+    "purpose": "Public commodity settlement-price benchmarks.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "risk-sec-derivative-disclosure",
+    "module_key": "risk-management",
+    "skill": "FX & counterparty risk",
+    "confidence": "verified",
+    "object": "SEC 10-Q derivative disclosure (ASC 815-10-50)",
+    "source_system": "SEC EDGAR",
+    "object_type": "public_disclosure",
+    "purpose": "Notional/fair-value hedge-disclosure structure verified against a filed 10-Q.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "risk-isda-csa",
+    "module_key": "risk-management",
+    "skill": "FX & counterparty risk",
+    "confidence": "corroborated",
+    "object": "ISDA Master Agreement + CSA",
+    "source_system": "ISDA / contracts",
+    "object_type": "document",
+    "purpose": "Legal agreements governing OTC derivative/counterparty exposure.",
+    "fields": [],
+    "adapter_status": "generic_upload_available"
+  },
+  {
+    "key": "ir-8k",
+    "module_key": "investor-relations",
+    "skill": "Earnings communication",
+    "confidence": "verified",
+    "object": "SEC Form 8-K, Item 2.02",
+    "source_system": "SEC EDGAR",
+    "object_type": "public_filing",
+    "purpose": "Official earnings-release filing item.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ir-reg-g",
+    "module_key": "investor-relations",
+    "skill": "Earnings communication",
+    "confidence": "verified",
+    "object": "Regulation G reconciliation",
+    "source_system": "SEC",
+    "object_type": "regulation",
+    "purpose": "GAAP-to-non-GAAP reconciliation requirement.",
+    "fields": [],
+    "adapter_status": "reference_only"
+  },
+  {
+    "key": "ir-13f",
+    "module_key": "investor-relations",
+    "skill": "Shareholder & analyst relations",
+    "confidence": "verified",
+    "object": "SEC Form 13F Information Table",
+    "source_system": "SEC EDGAR",
+    "object_type": "public_filing",
+    "purpose": "Institutional holdings data including issuer, CUSIP, value, shares, discretion and voting authority.",
+    "fields": [
+      "Name of Issuer",
+      "CUSIP",
+      "Value",
+      "Shares/Principal Amount",
+      "Voting Authority"
+    ],
+    "adapter_status": "sample_workbook_available"
+  },
+  {
+    "key": "ir-ibes",
+    "module_key": "investor-relations",
+    "skill": "Shareholder & analyst relations",
+    "confidence": "corroborated",
+    "object": "LSEG I/B/E/S",
+    "source_system": "LSEG",
+    "object_type": "market_data_platform",
+    "purpose": "Sell-side analyst consensus estimates.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ir-reg-fd",
+    "module_key": "investor-relations",
+    "skill": "Disclosure-rule awareness",
+    "confidence": "verified",
+    "object": "SEC Regulation FD (17 CFR 243)",
+    "source_system": "SEC",
+    "object_type": "regulation",
+    "purpose": "Fair-disclosure requirements.",
+    "fields": [],
+    "adapter_status": "reference_only"
+  },
+  {
+    "key": "ir-10k-10q",
+    "module_key": "investor-relations",
+    "skill": "Disclosure-rule awareness",
+    "confidence": "verified",
+    "object": "SEC Forms 10-K / 10-Q",
+    "source_system": "SEC EDGAR",
+    "object_type": "public_filing",
+    "purpose": "Annual and quarterly reports via XBRL/Inline XBRL.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ap-sap-po-history",
+    "module_key": "accounts-payable",
+    "skill": "Invoice processing & 3-way matching",
+    "confidence": "verified",
+    "object": "SAP EKKO / EKPO / EKBE",
+    "source_system": "SAP MM",
+    "object_type": "erp_tables",
+    "purpose": "Purchase-order header/item/history, including goods receipt and invoice receipt events.",
+    "fields": [
+      "VGABE"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ap-oracle-invoices",
+    "module_key": "accounts-payable",
+    "skill": "Invoice processing & 3-way matching",
+    "confidence": "verified",
+    "object": "Oracle AP_INVOICES_ALL / AP_INVOICE_DISTRIBUTIONS_ALL",
+    "source_system": "Oracle Fusion Payables",
+    "object_type": "oracle_tables",
+    "purpose": "AP invoice header and distributions, including match status and PO distribution references.",
+    "fields": [
+      "INVOICE_ID",
+      "PO_DISTRIBUTION_ID",
+      "MATCH_STATUS_FLAG"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ap-sap-vendor-master",
+    "module_key": "accounts-payable",
+    "skill": "Vendor management",
+    "confidence": "verified",
+    "object": "SAP LFA1 / LFB1 / LFBK",
+    "source_system": "SAP",
+    "object_type": "erp_tables",
+    "purpose": "Vendor general/company-code/bank master data.",
+    "fields": [
+      "LIFNR",
+      "NAME1",
+      "KTOKK",
+      "IBAN"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ap-w9",
+    "module_key": "accounts-payable",
+    "skill": "Vendor management",
+    "confidence": "verified",
+    "object": "IRS Form W-9 / W-8 for foreign vendors",
+    "source_system": "IRS / vendor documents",
+    "object_type": "government_form",
+    "purpose": "Vendor tax identification collection and certification forms.",
+    "fields": [],
+    "adapter_status": "reference_only"
+  },
+  {
+    "key": "ap-sap-payments",
+    "module_key": "accounts-payable",
+    "skill": "Payment processing",
+    "confidence": "verified",
+    "object": "SAP REGUH / REGUP",
+    "source_system": "SAP FI",
+    "object_type": "erp_tables",
+    "purpose": "Payment-run header/item, with posting back to BKPF/BSEG.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ap-ach-nacha",
+    "module_key": "accounts-payable",
+    "skill": "Payment processing",
+    "confidence": "verified",
+    "object": "NACHA / ACH payment file",
+    "source_system": "NACHA / bank",
+    "object_type": "file_format",
+    "purpose": "Electronic-payment interchange standard.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ap-sap-bsik",
+    "module_key": "accounts-payable",
+    "skill": "Vendor open items",
+    "confidence": "verified",
+    "object": "SAP BSIK",
+    "source_system": "SAP FI-AP",
+    "object_type": "erp_table",
+    "purpose": "Vendor open-items index used for AP aging/open items.",
+    "fields": [
+      "MANDT",
+      "BUKRS",
+      "LIFNR",
+      "GJAHR",
+      "BELNR",
+      "BUZEI",
+      "WRBTR",
+      "DMBTR",
+      "WAERS",
+      "ZFBDT",
+      "ZTERM",
+      "BUDAT",
+      "AUGDT",
+      "XBLNR"
+    ],
+    "adapter_status": "sample_workbook_available"
+  },
+  {
+    "key": "ar-oracle-customer-transactions",
+    "module_key": "ar-credit",
+    "skill": "Invoicing & cash application",
+    "confidence": "verified",
+    "object": "Oracle RA_CUSTOMER_TRX_ALL",
+    "source_system": "Oracle Receivables",
+    "object_type": "oracle_table",
+    "purpose": "Customer invoice/credit/debit memo header.",
+    "fields": [
+      "TRX_NUMBER",
+      "BILL_TO_CUSTOMER_ID",
+      "CUST_TRX_TYPE_ID"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ar-sap-bsid-bsad",
+    "module_key": "ar-credit",
+    "skill": "Invoicing & cash application",
+    "confidence": "verified",
+    "object": "SAP BSID / BSAD",
+    "source_system": "SAP FI-AR",
+    "object_type": "erp_tables",
+    "purpose": "Open and cleared customer line-item indexes.",
+    "fields": [],
+    "adapter_status": "sample_workbook_available"
+  },
+  {
+    "key": "ar-oracle-collections",
+    "module_key": "ar-credit",
+    "skill": "Collections",
+    "confidence": "verified",
+    "object": "Oracle Advanced Collections (IEX)",
+    "source_system": "Oracle Fusion",
+    "object_type": "platform_module",
+    "purpose": "Collections module, strategy and scoring engine.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ar-highradius",
+    "module_key": "ar-credit",
+    "skill": "Collections",
+    "confidence": "corroborated",
+    "object": "HighRadius Collections",
+    "source_system": "HighRadius",
+    "object_type": "platform",
+    "purpose": "AR collections and cash-application automation.",
+    "fields": [],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ar-sap-credit",
+    "module_key": "ar-credit",
+    "skill": "Customer credit-risk assessment",
+    "confidence": "verified",
+    "object": "SAP KNKK / UKM_BP",
+    "source_system": "SAP Credit Management",
+    "object_type": "erp_tables",
+    "purpose": "Classic FI-AR credit management versus S/4HANA FSCM credit-management objects.",
+    "fields": [
+      "KLIMK"
+    ],
+    "adapter_status": "planned"
+  },
+  {
+    "key": "ar-dnb-credit",
+    "module_key": "ar-credit",
+    "skill": "Customer credit-risk assessment",
+    "confidence": "verified",
+    "object": "Dun & Bradstreet business credit report",
+    "source_system": "Dun & Bradstreet",
+    "object_type": "external_report",
+    "purpose": "Third-party business-credit reference including DUNS/PAYDEX data.",
+    "fields": [
+      "DUNS",
+      "PAYDEX"
+    ],
+    "adapter_status": "planned"
+  }
+]
