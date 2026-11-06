@@ -24,6 +24,7 @@ from .models import Ingestion, SourceSheet, SourceRow, ExceptionRecord, ActionRe
 from .schemas import ActionCreate, ActionUpdate, ActionOut, ChatRequest, HealthResponse
 from .seed import seed_initial_data
 from .services.ingestion import ingest_file, IngestionError
+from .routers.market import router as market_router
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
 logger = logging.getLogger("investigation_copilot")
@@ -464,6 +465,7 @@ async def copilot_chat(body: ChatRequest, db: Session = Depends(get_db)):
             "evidence_ids_rejected": [eid for eid in parsed.get("evidence_ids", []) if eid not in allowed_ids],
             "human_validation_required": True, "demo_evidence": bool(inv.get("demo_only"))}
 
+api.include_router(market_router)
 app.include_router(api)
 
 @app.exception_handler(Exception)

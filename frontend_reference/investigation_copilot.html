@@ -104,6 +104,32 @@
   @media(max-width:1080px){.app{grid-template-columns:190px 1fr}.grid-kpi{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.evidence-grid{grid-template-columns:repeat(2,1fr)}.evidence-flow{grid-template-columns:1fr}.evidence-flow .connector{transform:rotate(90deg);height:24px}}
   @media(max-width:720px){.app{grid-template-columns:1fr}.sidebar{display:none}.content{padding:14px}.topbar{padding:0 14px}.grid-kpi,.three-col{grid-template-columns:1fr}.evidence-grid{grid-template-columns:1fr}.search{min-width:0;width:100%}}
 
+
+  .viz-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:16px 0}
+  .viz-list{display:grid;gap:11px;padding:16px 18px}
+  .viz-row{display:grid;grid-template-columns:minmax(112px, .8fr) minmax(80px,2fr) auto;gap:10px;align-items:center;font-size:11px}
+  .viz-track{height:10px;background:#edf1f7;border-radius:99px;overflow:hidden}
+  .viz-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#3b82f6,#7c9df4);min-width:2px}
+  .viz-fill.green{background:linear-gradient(90deg,#14965c,#56c38c)}.viz-fill.amber{background:linear-gradient(90deg,#d08a19,#f4c36d)}.viz-fill.red{background:linear-gradient(90deg,#c43d36,#ef8b83)}.viz-fill.purple{background:linear-gradient(90deg,#7655bd,#ac91e6)}
+  .viz-value{font-weight:800;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .market-controls{display:flex;gap:9px;align-items:end;flex-wrap:wrap}.market-controls label{display:grid;gap:5px;font-size:11px;color:var(--muted);font-weight:700}
+  .market-controls input,.market-controls select{min-width:155px;border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:#fff;color:var(--text)}
+  .market-result{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px}
+  .market-result button{border:0;background:var(--blue-2);color:var(--blue);font-weight:750;padding:7px 10px;border-radius:8px}
+  .market-card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0}
+  .market-card{border:1px solid var(--line);background:#fff;border-radius:13px;padding:14px;cursor:pointer;text-align:left;min-width:0}
+  .market-card:hover,.market-card.selected{border-color:#8eabef;box-shadow:0 5px 16px rgba(37,99,235,.09)}
+  .market-card .m-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
+  .market-card .m-value{font-size:21px;font-weight:850;margin:8px 0 4px;overflow-wrap:anywhere}
+  .market-card .m-meta{font-size:10px;color:var(--muted)}
+  .market-change.up{color:var(--green)}.market-change.down{color:var(--red)}
+  .market-chart{width:100%;height:270px;display:block}.market-chart text{font-size:10px;fill:#718096}
+  .market-status{font-size:11px;color:var(--muted);line-height:1.55;padding:10px 12px;background:#f8fafc;border-radius:9px}
+  .market-status.error{background:var(--red-bg);color:var(--red)}
+  .market-tabs{display:flex;gap:8px;margin:12px 0}.market-tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;font-size:11px;font-weight:750}.market-tabs button.active{background:var(--nav);border-color:var(--nav);color:#fff}
+  @media(max-width:1080px){.market-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.viz-grid{grid-template-columns:1fr}}
+  @media(max-width:720px){.market-card-grid{grid-template-columns:1fr 1fr}.viz-row{grid-template-columns:90px 1fr auto}.market-controls input,.market-controls select{min-width:125px}}
+
   .auth-gate{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.72);display:flex;align-items:center;justify-content:center;padding:20px}
   .auth-gate[hidden]{display:none!important}.auth-card{width:min(430px,100%);background:#fff;border-radius:18px;padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.24)}
   .auth-card h2{font-size:21px;margin:0 0 8px}.auth-card p{font-size:13px;color:var(--muted);line-height:1.55}.auth-card label{display:block;font-size:12px;font-weight:750;margin:18px 0 7px}.auth-card input{box-sizing:border-box;width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit}.auth-error{font-size:12px;color:var(--red);min-height:18px;margin:8px 0}
@@ -130,6 +156,8 @@
     <div class="brand-sub">Manufacturing Finance · Copilot</div>
     <nav class="nav">
       <button class="active" data-page="overview">Overview</button>
+      <button data-page="controller">Controller Dashboard</button>
+      <button data-page="markets">Market Intelligence</button>
       <button data-page="exceptions">Exceptions <span class="count">8</span></button>
       <button data-page="investigation">Investigation</button>
       <button data-page="actions">Actions <span class="count">6</span></button>
@@ -195,6 +223,72 @@
           </div>
         </div>
 
+      </section>
+
+      <!-- CONTROLLER INTELLIGENCE DASHBOARD -->
+      <section class="page" id="page-controller">
+        <div class="page-head">
+          <div><div class="eyebrow">Controller intelligence</div><h1>Understand the financial and operational picture.</h1><div class="sub">Live visual summaries from the current exception, action and control registers. Drill into an exception to inspect its evidence.</div></div>
+          <div class="toolbar"><span class="chip blue">API-derived</span><button class="btn" id="controllerRefreshBtn" type="button">Refresh visuals</button></div>
+        </div>
+        <div class="banner" id="controllerDataNote">Figures reflect the current exception register, not a complete ERP transaction model. No FX conversion or historical period comparison is applied.</div>
+        <div class="grid-kpi" style="margin-top:14px">
+          <div class="kpi"><div class="kpi-label">Open exposure</div><div class="kpi-value" id="ctrlExposure">—</div><div class="kpi-note">Active exception register</div></div>
+          <div class="kpi"><div class="kpi-label">Unfavorable exposure</div><div class="kpi-value" id="ctrlUnfavorable">—</div><div class="kpi-note">Records marked unfavorable</div></div>
+          <div class="kpi"><div class="kpi-label">Unexplained exceptions</div><div class="kpi-value" id="ctrlUnexplained">—</div><div class="kpi-note">No confirmed root cause</div></div>
+          <div class="kpi"><div class="kpi-label">Evidence incomplete</div><div class="kpi-value" id="ctrlEvidenceGap">—</div><div class="kpi-note">Active records with evidence gaps</div></div>
+        </div>
+        <div class="viz-grid">
+          <div class="panel"><div class="panel-head"><div><h2>Exposure by priority</h2><div class="sub">Grouped by record currency; no FX conversion</div></div></div><div id="ctrlPriorityChart" class="viz-list"><div class="muted">Waiting for API data…</div></div></div>
+          <div class="panel"><div class="panel-head"><div><h2>Exceptions by status</h2><div class="sub">Current exception register</div></div></div><div id="ctrlStatusChart" class="viz-list"><div class="muted">Waiting for API data…</div></div></div>
+          <div class="panel"><div class="panel-head"><div><h2>Root-cause progress</h2><div class="sub">Confirmed versus unresolved</div></div></div><div id="ctrlRootCauseChart" class="viz-list"><div class="muted">Waiting for API data…</div></div></div>
+          <div class="panel"><div class="panel-head"><div><h2>Remediation actions</h2><div class="sub">Action queue by status</div></div></div><div id="ctrlActionChart" class="viz-list"><div class="muted">Waiting for API data…</div></div></div>
+        </div>
+        <div class="panel"><div class="panel-head"><div><h2>Largest active exceptions</h2><div class="sub">Select a row to open its investigation</div></div><button class="btn" data-go="exceptions">Open exception queue</button></div><div style="overflow:auto"><table><thead><tr><th>Exception</th><th>Material</th><th>Impact</th><th>Priority</th><th>Root cause</th><th>Evidence</th></tr></thead><tbody id="ctrlTopExceptions"><tr><td colspan="6" class="muted">Waiting for API data…</td></tr></tbody></table></div></div>
+        <div class="market-status" style="margin-top:12px">Interpretation boundary: these charts summarize records already present in the application. They do not infer plant, supplier, material or monthly trends that are not represented in the current exception records. Historical trend analysis will follow once dated canonical transactions and period snapshots are available.</div>
+      </section>
+
+      <!-- MARKET INTELLIGENCE -->
+      <section class="page" id="page-markets">
+        <div class="page-head">
+          <div><div class="eyebrow">External market intelligence</div><h1>Track markets that can influence input costs.</h1><div class="sub">Global equities and reference metal prices, maintained separately from internal manufacturing finance records.</div></div>
+          <div class="toolbar"><span class="chip purple">External data</span><button class="btn" id="marketRefreshBtn" type="button">Reload market panels</button></div>
+        </div>
+        <div class="banner">Market data is contextual reference information—not an ERP valuation, supplier contract price or trading recommendation. Equities use daily end-of-day history. Gold and silver use daily history; copper and aluminum use monthly global price observations. Provider quotas and licensing apply.</div>
+        <div class="market-tabs"><button type="button" class="active" data-market-tab="equities">Stocks & Exchanges</button><button type="button" data-market-tab="metals">Metals</button></div>
+        <div id="marketEquitiesPane">
+          <div class="panel"><div class="panel-head"><div><h2>Global equity explorer</h2><div class="sub">Search a company or ticker, select the market listing, then inspect daily price history.</div></div></div><div class="panel-body">
+            <div class="market-controls">
+              <label>Market / exchange context<select id="marketExchange"><option value="all">All supported markets</option><option value="United States">United States · NYSE / NASDAQ</option><option value="BSE">India · BSE</option><option value="NSE">India · NSE</option><option value="Japan">Japan · Tokyo</option><option value="United Kingdom">United Kingdom · London</option><option value="Canada">Canada · Toronto</option><option value="Germany">Germany · XETRA</option></select></label>
+              <label>Company or ticker<input id="marketSearchInput" placeholder="e.g. Microsoft, Reliance, Toyota" maxlength="80" /></label>
+              <button class="btn primary" id="marketSearchBtn" type="button">Search instruments</button>
+              <label>Provider symbol<input id="marketDirectSymbol" placeholder="e.g. IBM / RELIANCE.BSE" maxlength="32" /></label>
+              <button class="btn" id="marketLoadSymbolBtn" type="button">Load symbol</button>
+            </div>
+            <div id="marketSearchStatus" class="market-status" style="margin-top:12px">Configure MARKET_DATA_API_KEY in Render to enable external market data.</div>
+            <div id="marketSearchResults" style="margin-top:8px"></div>
+          </div></div>
+          <div class="panel" style="margin-top:14px"><div class="panel-head"><div><h2 id="equityTitle">Selected equity</h2><div class="sub" id="equitySubtitle">Choose an instrument from the search results or enter a provider symbol.</div></div><span id="equityMarketChip" class="chip blue">Not loaded</span></div><div class="panel-body">
+            <div class="grid-kpi">
+              <div class="kpi"><div class="kpi-label">Latest close</div><div class="kpi-value" id="equityLatest">—</div><div class="kpi-note" id="equityLatestDate">No instrument selected</div></div>
+              <div class="kpi"><div class="kpi-label">Change vs prior session</div><div class="kpi-value" id="equityChange">—</div><div class="kpi-note">Calculated from returned daily closes</div></div>
+              <div class="kpi"><div class="kpi-label">Session high</div><div class="kpi-value" id="equityHigh">—</div><div class="kpi-note">Latest available daily bar</div></div>
+              <div class="kpi"><div class="kpi-label">Session low</div><div class="kpi-value" id="equityLow">—</div><div class="kpi-note">Latest available daily bar</div></div>
+            </div>
+            <div id="equityChart" class="market-chart"><div class="empty">Equity history will appear here after selecting an instrument.</div></div>
+            <div id="equityDataNote" class="market-status">Daily close data is not a real-time quote. Currency and exchange details are taken from the selected search match when available.</div>
+          </div></div>
+        </div>
+        <div id="marketMetalsPane" hidden>
+          <div class="market-controls" style="margin:14px 0"><label>Metal<select id="metalSelect"><option value="GOLD">Gold</option><option value="SILVER">Silver</option><option value="COPPER">Copper</option><option value="ALUMINUM">Aluminum</option></select></label><button class="btn primary" id="metalLoadBtn" type="button">Load metal history</button></div>
+          <div id="metalCards" class="market-card-grid"><div class="market-status">Waiting for metal market data…</div></div>
+          <div class="panel"><div class="panel-head"><div><h2 id="metalTitle">Metal price history</h2><div class="sub" id="metalSubtitle">Select a metal to inspect the latest observation and historical series.</div></div><span class="chip purple">Reference prices</span></div><div class="panel-body">
+            <div class="grid-kpi"><div class="kpi"><div class="kpi-label">Latest observation</div><div class="kpi-value" id="metalLatest">—</div><div class="kpi-note" id="metalLatestDate">No data loaded</div></div><div class="kpi"><div class="kpi-label">Change vs prior observation</div><div class="kpi-value" id="metalChange">—</div><div class="kpi-note" id="metalFrequency">Frequency not known</div></div><div class="kpi"><div class="kpi-label">Observation unit</div><div class="kpi-value" id="metalUnit" style="font-size:16px">—</div><div class="kpi-note">Provider-reported unit</div></div><div class="kpi"><div class="kpi-label">Observations displayed</div><div class="kpi-value" id="metalCount">—</div><div class="kpi-note">Most recent returned points</div></div></div>
+            <div id="metalChart" class="market-chart"><div class="empty">Metal price history will appear here.</div></div>
+            <div id="metalDataNote" class="market-status">Market data will be retrieved from the configured provider.</div>
+          </div></div>
+        </div>
+        <div class="market-status" style="margin-top:14px">Data provider: Alpha Vantage. Free API access is quota-limited (currently advertised at 25 requests/day). Results are cached by the backend to reduce repeated calls. If no market key is configured, the page remains available but displays no fabricated prices. Do not use this dashboard for trade execution or accounting valuation without an independently approved data source.</div>
       </section>
 
       <!-- EXCEPTIONS -->
@@ -550,6 +644,9 @@ renderInvestigation();
   let connectorsCache = [];
   let controlsCache = [];
   let currentInvestigation = null;
+  let marketMetalsCache = null;
+  let selectedEquityMatch = null;
+  let selectedMetalData = null;
   const byId = (id) => document.getElementById(id);
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const formatMoney = (amount, currency='USD') => {
@@ -624,6 +721,7 @@ renderInvestigation();
       renderActionsFromApi(actionsCache);
       renderDataSources(dataSourcesCache);
       renderConnectorCatalog(connectorsCache);
+      renderControllerDashboard();
       hideAuthGate();
       const note = overview.data_quality_note || 'Overview data loaded from the deployed API.';
       showBanner(note, false);
@@ -782,6 +880,152 @@ renderInvestigation();
     byId('drawerOverlay')?.classList.add('show');
   }
 
+  function renderHorizontalBars(targetId, rows, formatValue) {
+    const target = byId(targetId); if (!target) return;
+    if (!rows.length) { target.innerHTML = '<div class="muted">No records available.</div>'; return; }
+    const max = Math.max(1, ...rows.map(x => Math.abs(Number(x.value) || 0)));
+    target.innerHTML = rows.map(row => {
+      const width = Math.max(1, Math.abs(Number(row.value) || 0) / max * 100);
+      return `<div class="viz-row"><div>${escapeHtml(row.label)}</div><div class="viz-track"><div class="viz-fill ${escapeHtml(row.tone || '')}" style="width:${width.toFixed(1)}%"></div></div><div class="viz-value">${escapeHtml(formatValue ? formatValue(row.value, row) : row.value)}</div></div>`;
+    }).join('');
+  }
+
+  function renderControllerDashboard() {
+    const active = exceptionsCache.filter(x => String(x.status || '').toLowerCase() !== 'closed');
+    const total = active.reduce((sum, x) => sum + (Number(x.impact_amount) || 0), 0);
+    const unfav = active.filter(x => String(x.direction || '').toLowerCase() === 'unfavorable').reduce((sum, x) => sum + (Number(x.impact_amount) || 0), 0);
+    const unexplained = active.filter(x => !x.root_cause_found).length;
+    const evidenceGap = active.filter(x => !x.evidence_complete).length;
+    const currencies = [...new Set(active.map(x => x.currency || 'USD'))];
+    const currencyLabel = currencies.length === 1 ? currencies[0] : (currencies.length ? 'Mixed' : 'USD');
+    if (byId('ctrlExposure')) byId('ctrlExposure').textContent = currencyLabel === 'Mixed' ? 'Multi-currency' : formatK(total, currencyLabel);
+    if (byId('ctrlUnfavorable')) byId('ctrlUnfavorable').textContent = currencyLabel === 'Mixed' ? 'Multi-currency' : formatK(unfav, currencyLabel);
+    if (byId('ctrlUnexplained')) byId('ctrlUnexplained').textContent = String(unexplained);
+    if (byId('ctrlEvidenceGap')) byId('ctrlEvidenceGap').textContent = String(evidenceGap);
+
+    const priority = ['high','medium','low','review'];
+    const priorityRows = [];
+    currencies.forEach(currency => priority.forEach(level => {
+      const value = active.filter(x => (x.currency || 'USD') === currency && String(x.priority || '').toLowerCase() === level).reduce((sum,x)=>sum+(Number(x.impact_amount)||0),0);
+      if (value > 0) priorityRows.push({label:`${level[0].toUpperCase()+level.slice(1)} · ${currency}`,value,tone:level==='high'?'red':level==='medium'?'amber':'green'});
+    }));
+    renderHorizontalBars('ctrlPriorityChart', priorityRows, (v,row) => formatK(v, (row.label.split(' · ').pop() || 'USD')));
+
+    const statusMap = new Map();
+    exceptionsCache.forEach(x => { const k=String(x.status || 'unspecified').replaceAll('_',' '); statusMap.set(k,(statusMap.get(k)||0)+1); });
+    renderHorizontalBars('ctrlStatusChart',[...statusMap].map(([label,value])=>({label,value,tone:label==='closed'?'green':label==='open'?'red':'blue'})),v=>String(v));
+    renderHorizontalBars('ctrlRootCauseChart',[
+      {label:'Confirmed',value:active.filter(x=>x.root_cause_found).length,tone:'green'},
+      {label:'Unresolved',value:active.filter(x=>!x.root_cause_found).length,tone:'amber'},
+      {label:'Evidence complete',value:active.filter(x=>x.evidence_complete).length,tone:'blue'},
+      {label:'Evidence gap',value:active.filter(x=>!x.evidence_complete).length,tone:'red'}
+    ],v=>String(v));
+    const actionMap = new Map();
+    actionsCache.forEach(x => { const k=String(x.status || 'unspecified').replaceAll('_',' '); actionMap.set(k,(actionMap.get(k)||0)+1); });
+    renderHorizontalBars('ctrlActionChart',[...actionMap].map(([label,value])=>({label,value,tone:label==='completed'?'green':label==='open'?'amber':'blue'})),v=>String(v));
+
+    const top = [...active].sort((a,b)=>(Number(b.impact_amount)||0)-(Number(a.impact_amount)||0)).slice(0,8);
+    const body = byId('ctrlTopExceptions');
+    if (body) body.innerHTML = top.length ? top.map(x=>`<tr data-exception-id="${escapeHtml(x.id)}"><td><strong>${escapeHtml(x.title)}</strong><br><span class="muted mono">${escapeHtml(x.id)}</span></td><td>${escapeHtml(x.material_id || '—')}</td><td class="amount">${escapeHtml(displayImpact(x))}</td><td><span class="chip ${priorityClass(x.priority)}">${escapeHtml(x.priority || '—')}</span></td><td>${x.root_cause_found ? '<span class="chip green">Confirmed</span>' : '<span class="chip amber">Unresolved</span>'}</td><td>${x.evidence_complete ? '<span class="chip green">Complete</span>' : '<span class="chip amber">Gap</span>'}</td></tr>`).join('') : '<tr><td colspan="6" class="muted">No active exceptions are available.</td></tr>';
+    const note = byId('controllerDataNote');
+    if (note) note.textContent = `${exceptionsCache.length} exception records and ${actionsCache.length} action records loaded from the backend. These are current-register summaries, not historical financial trends. Demo cases may be included. ${currencyLabel==='Mixed'?'Exposure KPIs are intentionally suppressed because multiple currencies are present; charts remain grouped by currency.':'No currency conversion is applied.'}`;
+  }
+
+  function renderLineChart(targetId, points, dateKey, valueKey) {
+    const target = byId(targetId); if (!target) return;
+    if (!Array.isArray(points)) points=[];
+    points = points.filter(p => p && p[valueKey] !== null && p[valueKey] !== undefined && Number.isFinite(Number(p[valueKey])));
+    if (points.length < 2) { target.innerHTML = '<div class="empty">Not enough historical observations to draw a chart.</div>'; return; }
+    const values = points.map(p=>Number(p[valueKey]));
+    if (values.length < 2) { target.innerHTML = '<div class="empty">No numeric observations available.</div>'; return; }
+    const width=920,height=250,left=62,right=20,top=18,bottom=38;
+    const min=Math.min(...values), max=Math.max(...values), span=(max-min)||Math.max(1,Math.abs(max)*.02);
+    const coords=points.map((p,i)=>({x:left+(i/(points.length-1))*(width-left-right),y:top+(1-(Number(p[valueKey])-min)/span)*(height-top-bottom)}));
+    const path=coords.map((c,i)=>`${i?'L':'M'}${c.x.toFixed(1)},${c.y.toFixed(1)}`).join(' ');
+    const yTicks=[0,.5,1].map(t=>{const y=top+t*(height-top-bottom);const v=max-t*span;return `<line x1="${left}" y1="${y}" x2="${width-right}" y2="${y}" stroke="#e8edf4"/><text x="${left-10}" y="${y+4}" text-anchor="end">${v.toLocaleString(undefined,{maximumFractionDigits:2})}</text>`}).join('');
+    const first=points[0][dateKey],last=points[points.length-1][dateKey];
+    target.innerHTML=`<svg class="market-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Historical daily closing prices"><title>Historical price observations from ${escapeHtml(first)} to ${escapeHtml(last)}</title>${yTicks}<path d="${path}" fill="none" stroke="#2563eb" stroke-width="2.7" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${coords.at(-1).x}" cy="${coords.at(-1).y}" r="4.5" fill="#2563eb"/><text x="${left}" y="${height-8}">${escapeHtml(first)}</text><text x="${width-right}" y="${height-8}" text-anchor="end">${escapeHtml(last)}</text></svg>`;
+  }
+
+  function moneyValue(value, currency) {
+    const n=Number(value); if (!Number.isFinite(n)) return '—';
+    try { return new Intl.NumberFormat(undefined,{style:'currency',currency:currency || 'USD',maximumFractionDigits:2}).format(n); }
+    catch (_) { return `${currency || ''} ${n.toLocaleString(undefined,{maximumFractionDigits:2})}`; }
+  }
+
+  async function searchMarketEquities() {
+    const q=(byId('marketSearchInput')?.value || '').trim(); if(q.length<2){byId('marketSearchStatus').textContent='Enter at least two characters to search.';return;}
+    const status=byId('marketSearchStatus'); status.classList.remove('error'); status.textContent='Searching supported global listings…';
+    try {
+      const result=await request(`${API}/market/search?q=${encodeURIComponent(q)}`);
+      let items=result.items || [];
+      const region=byId('marketExchange')?.value || 'all';
+      if(region==='BSE') items=items.filter(x=>String(x.symbol||'').toUpperCase().endsWith('.BSE'));
+      else if(region==='NSE') items=items.filter(x=>/\.(NSE|NS)$/i.test(String(x.symbol||'')));
+      else if(region!=='all') items=items.filter(x=>String(x.region||'').toLowerCase().includes(region.toLowerCase()));
+      status.textContent=`${items.length} matching listing(s)${region==='all'?'':' for '+region}. Select a listing to load daily history. Exchange availability depends on the provider's symbol coverage.`;
+      byId('marketSearchResults').innerHTML=items.length?items.map((x,i)=>`<div class="market-result"><div><strong>${escapeHtml(x.symbol)}</strong> · ${escapeHtml(x.name)}<div class="small muted">${escapeHtml(x.type || 'Instrument')} · ${escapeHtml(x.region || 'Region unavailable')} · ${escapeHtml(x.currency || 'Currency unavailable')}</div></div><button type="button" data-market-match="${i}">View</button></div>`).join(''):'<div class="empty">No matching listings for this filter. Try All supported markets or a more specific ticker.</div>';
+      window._marketSearchResults=items;
+    } catch(error) { status.textContent=error.message; status.classList.add('error'); byId('marketSearchResults').innerHTML=''; }
+  }
+
+  async function loadMarketEquity(symbol, match=null) {
+    const status=byId('marketSearchStatus'); status.classList.remove('error'); status.textContent=`Loading daily history for ${symbol}…`;
+    try {
+      const result=await request(`${API}/market/equity?symbol=${encodeURIComponent(symbol)}`);
+      selectedEquityMatch=match || {symbol:result.symbol,name:result.name,region:'',currency:''};
+      const currency=selectedEquityMatch?.currency || '';
+      byId('equityTitle').textContent=`${selectedEquityMatch?.name || result.name} (${result.symbol})`;
+      byId('equitySubtitle').textContent=`${selectedEquityMatch?.region || 'Market'} · ${result.timezone || 'Provider timezone unavailable'}`;
+      byId('equityMarketChip').textContent=result.frequency;
+      byId('equityLatest').textContent=moneyValue(result.latest.close,currency);
+      byId('equityLatestDate').textContent=`Latest observation: ${result.last_refreshed}`;
+      byId('equityChange').textContent=result.change_percent===null?'—':`${result.change>=0?'+':''}${Number(result.change).toFixed(2)} (${Number(result.change_percent).toFixed(2)}%)`;
+      byId('equityHigh').textContent=moneyValue(result.latest.high,currency);
+      byId('equityLow').textContent=moneyValue(result.latest.low,currency);
+      byId('equityDataNote').textContent=`Source: ${result.source}. ${result.frequency}. Historical series contains ${result.series.length} daily observations. The free stock endpoint is end-of-day, not live intraday pricing.`;
+      renderLineChart('equityChart',result.series,'date','close');
+      status.textContent=`Loaded ${result.series.length} daily observations for ${result.symbol}.`;
+    } catch(error) { status.textContent=error.message; status.classList.add('error'); }
+  }
+
+  function renderMetals(result) {
+    marketMetalsCache=result;
+    const target=byId('metalCards'); if(!target)return;
+    target.innerHTML=(result.items||[]).map(item=>`<button type="button" class="market-card ${selectedMetalData?.symbol===item.symbol?'selected':''}" data-metal-card="${escapeHtml(item.symbol)}"><div class="m-label">${escapeHtml(item.label)}</div><div class="m-value">${Number(item.latest.value).toLocaleString(undefined,{maximumFractionDigits:2})}</div><div class="m-meta">${escapeHtml(item.unit)} · ${escapeHtml(item.latest.date)}</div><div class="m-meta market-change ${item.change>=0?'up':'down'}">${item.change_percent===null?'—':`${item.change>=0?'+':''}${Number(item.change_percent).toFixed(2)}%`} vs prior ${escapeHtml(item.interval)} observation</div></button>`).join('') || '<div class="market-status">No metal observations are currently available.</div>';
+    if(result.errors?.length){byId('metalDataNote').textContent='Some metal series could not be loaded: '+result.errors.map(e=>`${e.symbol}: ${e.detail}`).join(' · ');}
+    const selected=(result.items||[]).find(x=>x.symbol===(byId('metalSelect')?.value||'GOLD')) || result.items?.[0];
+    if(selected) renderSelectedMetal(selected);
+  }
+
+  function renderSelectedMetal(item) {
+    selectedMetalData=item;
+    if(byId('metalSelect')) byId('metalSelect').value=item.symbol;
+    if(byId('metalTitle')) byId('metalTitle').textContent=`${item.label} price history`;
+    if(byId('metalSubtitle')) byId('metalSubtitle').textContent=`Reference series · ${item.interval} observations`;
+    if(byId('metalLatest')) byId('metalLatest').textContent=Number(item.latest.value).toLocaleString(undefined,{maximumFractionDigits:2});
+    if(byId('metalLatestDate')) byId('metalLatestDate').textContent=`Latest observation: ${item.latest.date}`;
+    if(byId('metalChange')) byId('metalChange').textContent=item.change_percent===null?'—':`${item.change>=0?'+':''}${Number(item.change).toFixed(2)} (${Number(item.change_percent).toFixed(2)}%)`;
+    if(byId('metalFrequency')) byId('metalFrequency').textContent=`Change versus previous ${item.interval} observation`;
+    if(byId('metalUnit')) byId('metalUnit').textContent=item.unit || '—';
+    if(byId('metalCount')) byId('metalCount').textContent=String(item.series?.length || 0);
+    if(byId('metalDataNote')) byId('metalDataNote').textContent=`${item.source_detail} Source: ${item.source}. Latest available observation: ${item.last_refreshed}. This is a reference indicator, not a live exchange quote.`;
+    renderLineChart('metalChart',item.series,'date','value');
+    document.querySelectorAll('[data-metal-card]').forEach(el=>el.classList.toggle('selected',el.dataset.metalCard===item.symbol));
+  }
+
+  async function loadMarketMetals(force=false) {
+    const target=byId('metalCards'); if(target && !marketMetalsCache) target.innerHTML='<div class="market-status">Loading metal reference series…</div>';
+    try {
+      const result=await request(`${API}/market/metals`);
+      renderMetals(result);
+    } catch(error) {
+      const msg=error.message || 'Could not load metal data.';
+      if(target) {target.innerHTML=`<div class="market-status error">${escapeHtml(msg)}. Configure MARKET_DATA_API_KEY in Render and redeploy to activate the provider.</div>`;}
+      if(byId('metalDataNote')) byId('metalDataNote').textContent=msg;
+    }
+  }
+
   async function answerFromApi(question) {
     const id = currentInvestigation?.exception?.id || window.currentCase;
     if (!id) { toast('Open an exception before asking the copilot.'); return; }
@@ -885,6 +1129,23 @@ renderInvestigation();
     if (event.key === 'Enter' || event.key === ' ') { const card = event.target.closest('[data-evidence-index]'); if (card) { event.preventDefault(); openApiEvidence(card.dataset.evidenceIndex); } }
   });
   byId('exceptionSearch')?.addEventListener('input', () => renderExceptions(exceptionsCache));
+  byId('ctrlTopExceptions')?.addEventListener('click', event => { const row=event.target.closest('tr[data-exception-id]'); if(row) openApiInvestigation(row.dataset.exceptionId); });
+  byId('controllerRefreshBtn')?.addEventListener('click', async () => { const ok=await loadApiData(); if(ok) toast('Controller visuals refreshed from current API records.'); });
+  document.querySelectorAll('[data-market-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-market-tab]').forEach(x=>x.classList.toggle('active',x===btn));
+    const metals=btn.dataset.marketTab==='metals'; byId('marketEquitiesPane').hidden=metals; byId('marketMetalsPane').hidden=!metals;
+    if(metals && !marketMetalsCache) loadMarketMetals();
+  }));
+  byId('marketSearchBtn')?.addEventListener('click', searchMarketEquities);
+  byId('marketSearchInput')?.addEventListener('keydown', event=>{if(event.key==='Enter'){event.preventDefault();searchMarketEquities();}});
+  byId('marketSearchResults')?.addEventListener('click',event=>{const btn=event.target.closest('[data-market-match]');if(!btn)return;const match=window._marketSearchResults?.[Number(btn.dataset.marketMatch)];if(match)loadMarketEquity(match.symbol,match);});
+  byId('marketLoadSymbolBtn')?.addEventListener('click',()=>{const symbol=(byId('marketDirectSymbol')?.value||'').trim();if(symbol)loadMarketEquity(symbol);});
+  byId('marketDirectSymbol')?.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();byId('marketLoadSymbolBtn')?.click();}});
+  byId('metalSelect')?.addEventListener('change',()=>{const item=marketMetalsCache?.items?.find(x=>x.symbol===byId('metalSelect').value);if(item)renderSelectedMetal(item);});
+  byId('metalLoadBtn')?.addEventListener('click',()=>{const item=marketMetalsCache?.items?.find(x=>x.symbol===byId('metalSelect').value);if(item)renderSelectedMetal(item);else loadMarketMetals();});
+  byId('metalCards')?.addEventListener('click',event=>{const card=event.target.closest('[data-metal-card]');if(!card)return;const item=marketMetalsCache?.items?.find(x=>x.symbol===card.dataset.metalCard);if(item)renderSelectedMetal(item);});
+  byId('marketRefreshBtn')?.addEventListener('click',()=>{marketMetalsCache=null;loadMarketMetals(true);if((byId('marketSearchInput')?.value||'').trim().length>=2)searchMarketEquities();});
+
   byId('authForm')?.addEventListener('submit', async (event) => {
     event.preventDefault();
     const key = byId('apiKeyInput')?.value || '';

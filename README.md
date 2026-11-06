@@ -31,7 +31,7 @@ app/
   services/ingestion.py      XLSX/CSV/JSON parsing and mapping validation
 tests/                       API smoke tests
 sample_data/                 copies of the 12 supplied sample workbooks
-frontend_reference/          current static HTML reference
+frontend_reference/          same-origin HTML application served by FastAPI
 ```
 
 ## Run locally
@@ -69,6 +69,9 @@ For local development, `API_ACCESS_KEY` may be omitted. In `APP_ENV=production`,
 | Catalog | `GET /api/v1/catalog/source-objects/{source_key}` | One named Source Ledger object |
 | Connectors | `GET /api/v1/connectors/catalog` | Available/planned adapter inventory; does not claim ERP connections are active |
 | Dashboard | `GET /api/v1/overview` | KPI summary and priority exception list |
+| Market Intelligence | `GET /api/v1/market/search?q=` | Search global equity / instrument listings via Alpha Vantage |
+| Market Intelligence | `GET /api/v1/market/equity?symbol=` | Daily end-of-day equity OHLCV history |
+| Market Intelligence | `GET /api/v1/market/metals` | Gold/silver daily history and copper/aluminum monthly reference series |
 | Exceptions | `GET /api/v1/exceptions` | Search/filter/sort the current exception register |
 | Exceptions | `GET /api/v1/exceptions/{id}` | Exception details |
 | Investigation | `GET /api/v1/exceptions/{id}/evidence` | Evidence references currently attached to an exception |
@@ -117,9 +120,14 @@ Set these only in backend environment variables:
 GROQ_API_KEY=your_key_here
 GROQ_MODEL=openai/gpt-oss-20b
 GROQ_BASE_URL=https://api.groq.com/openai/v1
+MARKET_DATA_API_KEY=your_alpha_vantage_key_here  # Optional; server-side only
 ```
 
 The endpoint uses structured JSON output and checks model-provided evidence IDs against IDs already present in the server's investigation object. The model does not have database credentials or direct write tools. API calls fail clearly if no key is configured. In production, add request budgeting, retries with limits, rate limits, PII/data minimization, prompt/version tracking, latency monitoring, and model-evaluation tests. The response is advice, not a financial posting or ERP action.
+
+## Controller and Market Intelligence dashboards
+
+The HTML application includes a Controller Intelligence page with API-derived summaries of the exception and action registers, plus a Market Intelligence page. Market data requires the server-side `MARKET_DATA_API_KEY` environment variable. See [`docs/MARKET_INTELLIGENCE.md`](docs/MARKET_INTELLIGENCE.md) for provider coverage, caching, rate limits, data frequency, endpoints and deployment instructions.
 
 ## Current limitations to close before production
 
@@ -130,7 +138,7 @@ The endpoint uses structured JSON output and checks model-provided evidence IDs 
 5. Implement client-specific normalization, primary-key validation, currency/period validation, duplicate handling and reconciliations.
 6. Implement deterministic exception rules that derive exceptions from uploaded rows; currently seeded exceptions and uploaded workbooks are separate by design.
 7. Implement real SAP/Oracle adapters using approved released interfaces; the connector catalog only describes the planned options.
-8. Wire the HTML UI to these endpoints (currently the HTML is preserved under `frontend_reference` as an unmodified reference); then migrate to Next.js/React.
+8. Continue improving the same-origin HTML UI in `frontend_reference` (now API-wired, including the Controller and Market Intelligence dashboards); consider a component-based frontend migration after the data contracts and workflows stabilize.
 9. Add tenant isolation tests, integration tests, rate limiting, secrets management, audit trail, structured logging, metrics, backups and incident/restore drills.
 
 ## Test

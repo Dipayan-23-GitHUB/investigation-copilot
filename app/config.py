@@ -22,6 +22,7 @@ class Settings:
     groq_api_key: str = os.getenv("GROQ_API_KEY", "")
     groq_model: str = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
     groq_base_url: str = os.getenv("GROQ_BASE_URL", "https://api.groq.com/openai/v1")
+    alpha_vantage_api_key: str = os.getenv("MARKET_DATA_API_KEY", "")
     max_upload_mb: int = int(os.getenv("MAX_UPLOAD_MB", "25"))
     auto_create_db: bool = os.getenv("AUTO_CREATE_DB", "false" if os.getenv("APP_ENV", "development") == "production" else "true").lower() == "true"
 
