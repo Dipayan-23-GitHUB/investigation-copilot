@@ -106,7 +106,7 @@ curl -X POST http://127.0.0.1:8000/api/v1/ingestions \\
 
 The importer reads all workbook tabs, stores each tab's headers and data rows, maps recognized sheet names to the Source Ledger object catalog, and returns warnings for missing tabs/columns. Metadata rows above the header row are skipped. Uploads with the same tenant, module and SHA-256 are deduplicated. To load all 12 fictional examples into the local database, run `python scripts/load_sample_data.py`.
 
-## Module keys (12 Source Ledger roles)
+## Module keys (12 Source Ledger roles + finance reporting pack)
 
 `cfo`, `corporate-controller`, `plant-controller`, `cost-accounting`, `fpa`, `treasury`, `tax`, `internal-audit`, `risk-management`, `investor-relations`, `accounts-payable`, `ar-credit`.
 
@@ -140,6 +140,12 @@ The HTML application includes a Controller Intelligence page with API-derived su
 7. Implement real SAP/Oracle adapters using approved released interfaces; the connector catalog only describes the planned options.
 8. Continue improving the same-origin HTML UI in `frontend_reference` (now API-wired, including the Controller and Market Intelligence dashboards); consider a component-based frontend migration after the data contracts and workflows stabilize.
 9. Add tenant isolation tests, integration tests, rate limiting, secrets management, audit trail, structured logging, metrics, backups and incident/restore drills.
+
+## Finance Dashboard data connection
+
+The Controller Finance Dashboard reads a normalized workbook uploaded with module key `finance-reporting`. Download `sample_data/Finance_Dashboard_Upload_Template.xlsx` and populate its four sheets (`PNL_ACTUALS`, `BUDGET`, `CASH_FLOW`, `TRIAL_BALANCE`) using the instructions in [docs/FINANCE_DASHBOARD_DATA.md](docs/FINANCE_DASHBOARD_DATA.md). Upload it with **Upload extract** and select `finance-reporting`.
+
+The API endpoint `GET /api/v1/finance/dashboard` derives KPIs and visual summaries only from these uploaded rows. It keeps currencies separate and applies period/entity/currency filters. It does not infer P&L classifications from raw GL account numbers or infer operating cash flow from unclassified bank transactions. The twelve Source Ledger source workbooks remain available for detailed source ingestion, but they are not themselves a reconciled management P&L.
 
 ## Test
 

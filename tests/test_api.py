@@ -12,12 +12,13 @@ from fastapi.testclient import TestClient
 from app.main import app
 
 
-def test_catalog_has_12_source_ledger_modules():
+def test_catalog_has_12_source_ledger_modules_plus_finance_pack():
     with TestClient(app) as client:
         response = client.get("/api/v1/catalog/modules")
         assert response.status_code == 200
         body = response.json()
-        assert body["count"] == 12
+        assert body["count"] == 13
+        assert any(x["key"] == "finance-reporting" for x in body["items"])
         catalog = client.get("/api/v1/catalog/source-objects")
         assert catalog.status_code == 200
         assert catalog.json()["count"] >= 50

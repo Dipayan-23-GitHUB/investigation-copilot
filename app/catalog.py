@@ -82,6 +82,32 @@ MODULES = [
         "sheets": [{"name": "BSID", "object": "SAP BSID customer open-items index", "header_row": 5, "primary_key": ["MANDT", "BUKRS", "KUNNR", "BELNR", "GJAHR", "BUZEI"], "join_keys": ["MANDT", "BUKRS", "KUNNR", "BELNR", "GJAHR"], "columns": ["MANDT", "BUKRS", "KUNNR", "BELNR", "GJAHR", "BUZEI", "WRBTR", "DMBTR", "SKFBT", "BUDAT", "ZFBDT", "ZTERM", "ZBD1T", "ZBD1P", "AUGDT", "AUGBL", "SHKZG", "WAERS"]}],
         "related_objects": ["Oracle RA_CUSTOMER_TRX_ALL", "Oracle Advanced Collections (IEX)", "SAP KNKK/UKM_BP"],
     },
+
+    {
+        "key": "finance-reporting", "name": "Finance Reporting Pack", "role": "Normalized Finance Reporting Pack",
+        "workbook": "Finance_Dashboard_Upload_Template.xlsx",
+        "description": "Normalized, management-ready P&L actuals, budget, cash flow and trial-balance lines for the Controller Finance Dashboard.",
+        "source_ledger_pages": [],
+        "sheets": [
+            {"name": "PNL_ACTUALS", "object": "Normalized P&L actuals", "header_row": 5,
+             "primary_key": ["PERIOD", "ENTITY", "CURRENCY", "ACCOUNT_CODE", "STATEMENT_LINE"],
+             "join_keys": ["PERIOD", "ENTITY", "CURRENCY", "ACCOUNT_CODE"],
+             "columns": ["PERIOD", "ENTITY", "CURRENCY", "ACCOUNT_CODE", "ACCOUNT_NAME", "STATEMENT_LINE", "CATEGORY", "AMOUNT"]},
+            {"name": "BUDGET", "object": "Normalized approved budget", "header_row": 5,
+             "primary_key": ["PERIOD", "ENTITY", "CURRENCY", "ACCOUNT_CODE", "STATEMENT_LINE"],
+             "join_keys": ["PERIOD", "ENTITY", "CURRENCY", "ACCOUNT_CODE"],
+             "columns": ["PERIOD", "ENTITY", "CURRENCY", "ACCOUNT_CODE", "ACCOUNT_NAME", "STATEMENT_LINE", "CATEGORY", "BUDGET_AMOUNT"]},
+            {"name": "CASH_FLOW", "object": "Normalized cash-flow statement", "header_row": 5,
+             "primary_key": ["PERIOD", "ENTITY", "CURRENCY", "CASH_FLOW_CLASS", "CATEGORY"],
+             "join_keys": ["PERIOD", "ENTITY", "CURRENCY", "CASH_FLOW_CLASS", "CATEGORY"],
+             "columns": ["PERIOD", "ENTITY", "CURRENCY", "CASH_FLOW_CLASS", "CATEGORY", "AMOUNT"]},
+            {"name": "TRIAL_BALANCE", "object": "Normalized trial balance", "header_row": 5,
+             "primary_key": ["PERIOD", "ENTITY", "CURRENCY", "ACCOUNT_CODE"],
+             "join_keys": ["PERIOD", "ENTITY", "CURRENCY", "ACCOUNT_CODE"],
+             "columns": ["PERIOD", "ENTITY", "CURRENCY", "BALANCE_CLASS", "ACCOUNT_CODE", "ACCOUNT_NAME", "CLOSING_BALANCE"]},
+        ],
+        "note": "This is a dashboard normalization pack, not one of the 12 Source Ledger source-system modules. Source account classifications and reconciliations must be completed before upload.",
+    },
 ]
 
 MODULE_MAP = {m["key"]: m for m in MODULES}

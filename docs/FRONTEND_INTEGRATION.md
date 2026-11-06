@@ -4,7 +4,7 @@ The unmodified file under `frontend_reference/investigation_copilot.html` is pre
 
 | UI element | API endpoint | Notes |
 |---|---|---|
-| Sidebar role/modules future selector | `GET /api/v1/catalog/modules` | Returns all 12 Source Ledger modules |
+| Sidebar role/modules future selector | `GET /api/v1/catalog/modules` | Returns the 12 Source Ledger modules plus the normalized `finance-reporting` upload pack |
 | KPI cards | `GET /api/v1/overview` | Server-owned values; show `data_quality_note` and avoid overstating demo KPIs |
 | Priority exceptions table | `GET /api/v1/exceptions` or `GET /api/v1/overview` | Search UI can pass `search`, `priority`, `status`, `limit`, `offset` |
 | Recurring root causes | `GET /api/v1/controls` | Future version should group repeat investigations by validated root-cause/control key, not simply static copy |

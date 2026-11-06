@@ -25,6 +25,7 @@ from .schemas import ActionCreate, ActionUpdate, ActionOut, ChatRequest, HealthR
 from .seed import seed_initial_data
 from .services.ingestion import ingest_file, IngestionError
 from .routers.market import router as market_router
+from .services.finance_dashboard import build_finance_dashboard
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
 logger = logging.getLogger("investigation_copilot")
@@ -220,6 +221,17 @@ def connector_catalog():
         {"key":"sec-edgar", "name":"SEC EDGAR public filings", "status":"planned", "notes":"Potential public-data adapter for Investor Relations; not connected yet."},
         {"key":"generic-readonly-api", "name":"Customer-approved REST API", "status":"planned", "notes":"Adapter contract to be defined per customer's source system."}
     ], "important_note":"The Source Ledger names tables, views, file formats and documents; it does not mean every named object is itself a callable HTTP API."}
+
+@api.get("/finance/dashboard", tags=["finance-dashboard"])
+def get_finance_dashboard(
+    from_date: str | None = None,
+    to_date: str | None = None,
+    entity: str | None = None,
+    currency: str | None = None,
+    db: Session = Depends(get_db),
+):
+    """Return finance KPIs and charts derived only from uploaded normalized finance rows."""
+    return build_finance_dashboard(db, from_date=from_date, to_date=to_date, entity=entity, currency=currency)
 
 @api.get("/overview", tags=["overview"])
 def get_overview(db: Session = Depends(get_db)):

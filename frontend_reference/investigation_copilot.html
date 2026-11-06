@@ -179,6 +179,20 @@
   .finance-pill{display:inline-block;padding:3px 6px;border-radius:20px;font-size:8px;font-weight:800;background:#eef3fb;color:#526886}
   .finance-pill.high{background:#fff0ee;color:#ba3b35}.finance-pill.medium{background:#fff6df;color:#9a6500}.finance-pill.low{background:#eaf8f0;color:#15804c}
   .finance-footnote{font-size:9px;color:#8491a4;line-height:1.5;padding:2px 1px}
+  .finance-data-list{display:grid;gap:9px}
+  .finance-data-row{display:grid;grid-template-columns:minmax(82px,1fr) minmax(90px,2fr) auto;gap:8px;align-items:center;font-size:10px;color:#425672}
+  .finance-data-track{height:9px;background:#edf2f8;border-radius:99px;overflow:hidden}
+  .finance-data-fill{height:100%;border-radius:99px;background:#3976dc;min-width:2px}
+  .finance-data-fill.secondary{background:#19a66a}.finance-data-fill.tertiary{background:#dc9b24}
+  .finance-data-value{font-weight:800;color:#19345d;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .finance-data-legend{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 8px;font-size:9px;color:#75849a}
+  .finance-data-legend span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;background:#3976dc;margin-right:5px}
+  .finance-data-legend span:nth-child(2):before{background:#19a66a}.finance-data-legend span:nth-child(3):before{background:#dc9b24}
+  .finance-data-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .finance-data-summary div{background:#f7faff;border:1px solid #e7edf6;border-radius:8px;padding:10px}
+  .finance-data-summary label{display:block;color:#8290a5;font-size:8px;font-weight:800;text-transform:uppercase}
+  .finance-data-summary strong{display:block;color:#17345f;font-size:15px;margin:5px 0}
+  .finance-data-summary small{display:block;color:#8290a5;font-size:9px}
   @media(max-width:1200px){.finance-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.finance-layout{grid-template-columns:140px minmax(0,1fr)}}
   @media(max-width:760px){.finance-page{padding:10px}.finance-toolbar{align-items:flex-start;flex-direction:column}.finance-layout{grid-template-columns:1fr}.finance-rail{min-height:0}.finance-rail nav{display:flex;gap:4px;overflow:auto}.finance-rail a{white-space:nowrap}.finance-rail-foot{display:none}.finance-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.finance-panel.span-2,.finance-panel.span-3,.finance-panel.span-4,.finance-panel.span-6{grid-column:span 2}.finance-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.finance-mini-summary{grid-template-columns:1fr}}
 
@@ -317,7 +331,8 @@
             <div class="finance-filters">
               <input id="financeFromDate" type="date" aria-label="From date" />
               <input id="financeToDate" type="date" aria-label="To date" />
-              <select id="financeEntity"><option>All Entities</option><option>Plant 100 — SFO</option><option>Plant 200 — Austin</option></select>
+              <select id="financeEntity"><option value="All Entities">All Entities</option><option value="Plant 100 — SFO">Plant 100 — SFO</option><option value="Plant 200 — Austin">Plant 200 — Austin</option></select>
+              <select id="financeCurrency" aria-label="Currency"><option value="">All Currencies</option></select>
               <button class="btn" id="controllerRefreshBtn" type="button">↻ Refresh</button>
             </div>
           </div>
@@ -336,30 +351,30 @@
                 <a href="#finance-reports">▧ &nbsp; Reports</a>
                 <a href="#finance-accounts">▣ &nbsp; Accounts</a>
               </nav>
-              <div class="finance-rail-foot">DATA COVERAGE<br/><strong id="financeRegisterCount">Loading exception register…</strong><br/>Exception register only<br/><br/>No ERP writeback</div>
+              <div class="finance-rail-foot">DATA COVERAGE<br/><strong id="financeRegisterCount">Loading finance data…</strong><br/>Finance reporting pack + exception register<br/><br/>No ERP writeback</div>
             </aside>
             <div class="finance-stage">
               <section id="finance-overview">
-                <div class="finance-section-head"><div><h2>Financial overview</h2><p>Selected period · all entities</p></div><span class="chip blue">API connected</span></div>
+                <div class="finance-section-head"><div><h2>Financial overview</h2><p>Selected period · all entities</p></div><span class="chip amber" id="financeApiStatusChip">Finance data pending</span></div>
                 <div class="finance-kpis">
-                  <div class="finance-kpi"><div class="finance-kpi-top">Total Revenue <span class="finance-kpi-icon">$</span></div><strong class="finance-unmapped">Not connected</strong><small>Revenue ledger / billing extract required</small></div>
-                  <div class="finance-kpi"><div class="finance-kpi-top">Gross Profit <span class="finance-kpi-icon">▥</span></div><strong class="finance-unmapped">Not connected</strong><small>Revenue and cost-of-sales mapping required</small></div>
-                  <div class="finance-kpi"><div class="finance-kpi-top">Net Profit <span class="finance-kpi-icon">◔</span></div><strong class="finance-unmapped">Not connected</strong><small>Validated P&amp;L close required</small></div>
-                  <div class="finance-kpi"><div class="finance-kpi-top">Operating Expenses <span class="finance-kpi-icon">▣</span></div><strong class="finance-unmapped">Not connected</strong><small>GL expense accounts required</small></div>
-                  <div class="finance-kpi"><div class="finance-kpi-top">Operating Cash Flow <span class="finance-kpi-icon">▤</span></div><strong class="finance-unmapped">Not connected</strong><small>Cash flow statement / treasury extract required</small></div>
-                  <div class="finance-kpi"><div class="finance-kpi-top">Net Profit Margin <span class="finance-kpi-icon">◌</span></div><strong class="finance-unmapped">Not connected</strong><small>Calculated after P&amp;L reconciliation</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Total Revenue <span class="finance-kpi-icon">$</span></div><strong id="financeKpiRevenue" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiRevenueMeta">P&amp;L actuals required</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Gross Profit <span class="finance-kpi-icon">▥</span></div><strong id="financeKpiGrossProfit" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiGrossProfitMeta">Revenue and COGS lines required</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Net Profit <span class="finance-kpi-icon">◔</span></div><strong id="financeKpiNetProfit" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiNetProfitMeta">Complete P&amp;L lines required</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Operating Expenses <span class="finance-kpi-icon">▣</span></div><strong id="financeKpiOpex" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiOpexMeta">Operating expense lines required</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Operating Cash Flow <span class="finance-kpi-icon">▤</span></div><strong id="financeKpiOcf" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiOcfMeta">Classified operating cash flow required</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Net Profit Margin <span class="finance-kpi-icon">◌</span></div><strong id="financeKpiMargin" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiMarginMeta">Net profit divided by revenue</small></div>
                 </div>
               </section>
               <div class="finance-grid">
-                <article class="finance-panel span-2" id="finance-revenue"><div class="finance-panel-head"><h3>Revenue Trend</h3><span>Actual vs Budget · Last 12 Months</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">⌁</div><strong>Revenue trend awaits a mapped source</strong><small>Connect monthly actual revenue and approved budget extracts to plot the comparison.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-profitability"><div class="finance-panel-head"><h3>Profit &amp; Margin Trend</h3><span>Actual · Last 12 Months</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">◔</div><strong>Profitability data not connected</strong><small>Gross profit, net profit and margin will appear after P&amp;L account mapping and reconciliation.</small></div></div></article>
-                <article class="finance-panel span-2"><div class="finance-panel-head"><h3>Revenue by Category</h3><span>Revenue mix</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">◉</div><strong>No validated revenue categories</strong><small>Map product, service, subscription or other revenue dimensions to populate this view.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-expenses"><div class="finance-panel-head"><h3>Expenses Breakdown</h3><span>By account category</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">▤</div><strong>Expense categories not mapped</strong><small>Connect the general ledger and classify expense accounts before displaying totals or mix.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-cashflow"><div class="finance-panel-head"><h3>Cash Flow Overview</h3><span>Operating · Investing · Financing</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">⇄</div><strong>Cash flow statement not connected</strong><small>Connect validated cash flow or bank / treasury extracts. No cash balance is inferred from exceptions.</small></div></div></article>
-                <article class="finance-panel span-2"><div class="finance-panel-head"><h3>Top Expense Categories</h3><span>Amount · % of total · vs prior</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">▥</div><strong>Awaiting mapped expense detail</strong><small>Requires posted expense transactions, category mapping and a comparable prior period.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-budget"><div class="finance-panel-head"><h3>Budget vs Actual (YTD)</h3><span>Year to date</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">▥</div><strong>Budget not connected</strong><small>Upload an approved budget by period, entity and account to enable variance analysis.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-accounts"><div class="finance-panel-head"><h3>Account Balance Summary</h3><span>Cash · AR · AP</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">▣</div><strong>Trial balance not connected</strong><small>Map cash, receivables and payables accounts from a reconciled trial balance.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-forecast"><div class="finance-panel-head"><h3>Profitability Summary</h3><span>Gross · Operating · Net</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">◉</div><strong>Profitability summary unavailable</strong><small>Requires a reconciled P&amp;L and approved reporting calendar.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-revenue"><div class="finance-panel-head"><h3>Revenue Trend</h3><span>Actual vs Budget · Last 12 Months</span></div><div class="finance-panel-body" id="financeRevenueTrend"><div class="finance-placeholder"><strong>Upload a Finance Reporting Pack</strong><small>Monthly P&amp;L actuals and budget lines will appear here.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-profitability"><div class="finance-panel-head"><h3>Profit &amp; Margin Trend</h3><span>Actual · Last 12 Months</span></div><div class="finance-panel-body" id="financeProfitTrend"><div class="finance-placeholder"><strong>Awaiting P&amp;L actuals</strong><small>Gross profit and net profit trends will be calculated from mapped statement lines.</small></div></div></article>
+                <article class="finance-panel span-2"><div class="finance-panel-head"><h3>Revenue by Category</h3><span>Revenue mix</span></div><div class="finance-panel-body" id="financeRevenueMix"><div class="finance-placeholder"><strong>Revenue categories not loaded</strong><small>Category labels in the uploaded P&amp;L actuals populate this view.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-expenses"><div class="finance-panel-head"><h3>Expenses Breakdown</h3><span>By account category</span></div><div class="finance-panel-body" id="financeExpensesBreakdown"><div class="finance-placeholder"><strong>Awaiting expense actuals</strong><small>COGS and expense categories will be grouped from uploaded P&amp;L lines.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-cashflow"><div class="finance-panel-head"><h3>Cash Flow Overview</h3><span>Operating · Investing · Financing</span></div><div class="finance-panel-body" id="financeCashFlow"><div class="finance-placeholder"><strong>Awaiting classified cash-flow lines</strong><small>Upload operating, investing and financing cash-flow rows.</small></div></div></article>
+                <article class="finance-panel span-2"><div class="finance-panel-head"><h3>Top Expense Categories</h3><span>Amount · % of total · vs prior</span></div><div class="finance-panel-body" id="financeTopExpenses"><div class="finance-placeholder"><strong>Awaiting expense categories</strong><small>Top categories will be ranked from uploaded expense actuals.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-budget"><div class="finance-panel-head"><h3>Budget vs Actual (YTD)</h3><span>Year to date</span></div><div class="finance-panel-body" id="financeBudgetActual"><div class="finance-placeholder"><strong>Awaiting approved budget</strong><small>Budget and actual lines are compared by period, account and category.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-accounts"><div class="finance-panel-head"><h3>Account Balance Summary</h3><span>Cash · AR · AP</span></div><div class="finance-panel-body" id="financeAccountBalances"><div class="finance-placeholder"><strong>Awaiting trial balance</strong><small>Cash, receivables, payables and inventory balances require closing-balance rows.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-forecast"><div class="finance-panel-head"><h3>Profitability Summary</h3><span>Gross · Operating · Net</span></div><div class="finance-panel-body" id="financeProfitSummary"><div class="finance-placeholder"><strong>Awaiting complete P&amp;L</strong><small>Gross, operating and net profit are calculated from the mapped lines.</small></div></div></article>
                 <article class="finance-panel span-6" id="finance-reports"><div class="finance-panel-head"><h3>Recent Alerts &amp; Controller Attention</h3><span>Current exception register · click a row to investigate</span></div><div class="finance-panel-body" style="padding:0;overflow:auto"><table class="finance-alert-table"><thead><tr><th>Exception</th><th>Material</th><th>Impact</th><th>Priority</th><th>Root Cause</th><th>Status</th></tr></thead><tbody id="financeRecentAlerts"><tr><td colspan="6" class="muted">Loading current exceptions…</td></tr></tbody></table></div></article>
                 <article class="finance-panel span-6"><div class="finance-panel-head"><h3>Live Controller Register Signals</h3><span>Read from current backend register</span></div><div class="finance-panel-body"><div class="finance-mini-summary">
                   <div class="finance-signal"><label>Active Exceptions</label><strong id="financeActiveExceptions">—</strong><small>Not closed</small></div>
@@ -826,6 +841,7 @@ renderInvestigation();
       renderDataSources(dataSourcesCache);
       renderConnectorCatalog(connectorsCache);
       renderControllerDashboard();
+      await loadFinanceDashboard();
       hideAuthGate();
       loadMarketDashboard();
       const note = overview.data_quality_note || 'Overview data loaded from the deployed API.';
@@ -1006,8 +1022,118 @@ renderInvestigation();
     const rows = [...active].sort((a,b)=>(Number(b.impact_amount)||0)-(Number(a.impact_amount)||0)).slice(0,8);
     const body = byId('financeRecentAlerts');
     if (body) body.innerHTML = rows.length ? rows.map(x => `<tr data-exception-id="${escapeHtml(x.id)}"><td><strong>${escapeHtml(x.title)}</strong><br><span class="muted">${escapeHtml(x.id)}</span></td><td>${escapeHtml(x.material_id || '—')}</td><td><strong>${escapeHtml(displayImpact(x))}</strong></td><td><span class="finance-pill ${escapeHtml(String(x.priority || '').toLowerCase())}">${escapeHtml(x.priority || '—')}</span></td><td>${x.root_cause_found ? 'Confirmed' : 'Unresolved'}</td><td>${escapeHtml(statusLabel(x.status))}</td></tr>`).join('') : '<tr><td colspan="6" class="muted">No active exception records.</td></tr>';
-    const note = byId('financeDataNote');
-    if (note) note.textContent = `Current backend connection: ${exceptionsCache.length} exception records and ${actionsCache.length} action records. P&L, revenue, expense, cash-flow, budget and trial-balance panels are intentionally marked not connected until validated finance extracts are mapped. Demo exception records may be included; no finance KPI is inferred from them.`;
+  }
+
+  function financeFormat(value, currency, percent=false) {
+    if (percent) return Number.isFinite(Number(value)) ? `${Number(value).toFixed(1)}%` : '—';
+    return moneyValue(value, currency || 'USD');
+  }
+
+  function financeMetricText(metric, percent=false) {
+    if (!metric || metric.status !== 'available') {
+      if (metric?.status === 'multi_currency') return (metric.by_currency || []).map(x=>`${x.currency} ${financeFormat(x.value,x.currency,percent)}`).join(' · ');
+      return 'Awaiting finance pack';
+    }
+    return financeFormat(metric.value, metric.currency, percent);
+  }
+
+  function financeMetricMeta(metric, fallback) {
+    if (!metric) return fallback;
+    if (metric.status === 'available') return `Source: Finance Reporting Pack · ${metric.currency}`;
+    return metric.message || fallback;
+  }
+
+  function renderFinancePlaceholder(targetId, title, detail) {
+    const target=byId(targetId); if(!target)return;
+    target.innerHTML=`<div class="finance-placeholder"><div class="ph-icon">◌</div><strong>${escapeHtml(title)}</strong><small>${escapeHtml(detail)}</small></div>`;
+  }
+
+  function renderFinanceBars(targetId, rows, series, labelKey='label', emptyTitle='No mapped rows', emptyDetail='Upload the required sheet in the Finance Reporting Pack.') {
+    const target=byId(targetId); if(!target)return;
+    if(!rows?.length){renderFinancePlaceholder(targetId,emptyTitle,emptyDetail);return;}
+    const activeSeries=series.filter(s=>rows.some(r=>r[s.key]!==null && r[s.key]!==undefined && Number.isFinite(Number(r[s.key]))));
+    const usableRows=rows.filter(r=>activeSeries.some(s=>r[s.key]!==null && r[s.key]!==undefined && Number.isFinite(Number(r[s.key]))));
+    if(!usableRows.length){renderFinancePlaceholder(targetId,emptyTitle,emptyDetail);return;}
+    const max=Math.max(1,...usableRows.flatMap(r=>activeSeries.filter(s=>r[s.key]!==null && r[s.key]!==undefined).map(s=>Math.abs(Number(r[s.key])||0))));
+    target.innerHTML=`<div class="finance-data-list">${activeSeries.length>1?`<div class="finance-data-legend">${activeSeries.map(s=>`<span>${escapeHtml(s.label)}</span>`).join('')}</div>`:''}${usableRows.slice(0,9).map(row=>{
+      const bars=activeSeries.filter(s=>row[s.key]!==null && row[s.key]!==undefined).map(s=>{const i=activeSeries.indexOf(s);const n=Number(row[s.key])||0;const width=Math.max(Math.abs(n)>0?1:0,Math.abs(n)/max*100);return `<div style="display:flex;align-items:center;gap:7px;margin:2px 0"><div class="finance-data-track" style="flex:1"><div class="finance-data-fill ${i===1?'secondary':i===2?'tertiary':''}" style="width:${width.toFixed(1)}%"></div></div><span class="finance-data-value">${escapeHtml(financeFormat(n,row.currency))}</span></div>`;}).join('');
+      return `<div class="finance-data-row"><div>${escapeHtml(row[labelKey]||'—')}${row.currency?`<br><small>${escapeHtml(row.currency)}</small>`:''}</div><div>${bars}</div><div></div></div>`;
+    }).join('')}</div>`;
+  }
+
+  function renderFinanceSummary(targetId, rows, keys, emptyTitle, emptyDetail) {
+    const target=byId(targetId); if(!target)return;
+    if(!rows?.length){renderFinancePlaceholder(targetId,emptyTitle,emptyDetail);return;}
+    const row=rows[0];
+    target.innerHTML=`<div class="finance-data-summary">${keys.map(k=>`<div><label>${escapeHtml(k.label)}</label><strong>${escapeHtml(financeFormat(row[k.key],row.currency,k.percent||false))}</strong><small>${escapeHtml(row.currency||'')}</small></div>`).join('')}</div>`;
+  }
+
+  async function loadFinanceDashboard() {
+    const note=byId('financeDataNote');
+    try {
+      const params=new URLSearchParams();
+      const from=byId('financeFromDate')?.value || '';
+      const to=byId('financeToDate')?.value || '';
+      const entity=byId('financeEntity')?.value || 'All Entities';
+      const currency=byId('financeCurrency')?.value || '';
+      if(from)params.set('from_date',from); if(to)params.set('to_date',to);
+      if(entity && entity!=='All Entities')params.set('entity',entity);
+      if(currency)params.set('currency',currency);
+      const query=params.toString();
+      const result=await request(`${API}/finance/dashboard${query?`?${query}`:''}`);
+      const currencySelect=byId('financeCurrency');
+      if(currencySelect){
+        const selected=result.selected_currency || currencySelect.value || '';
+        const options=['<option value="">All Currencies</option>',...(result.currencies||[]).map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`)];
+        currencySelect.innerHTML=options.join(''); currencySelect.value=selected;
+      }
+      const entitySelect=byId('financeEntity');
+      if(entitySelect && Array.isArray(result.entities)){
+        const selectedEntity=result.selected_entity && result.selected_entity!=='All Entities' ? result.selected_entity : 'All Entities';
+        entitySelect.innerHTML=['<option value="All Entities">All Entities</option>',...result.entities.map(e=>`<option value="${escapeHtml(e)}">${escapeHtml(e)}</option>`) ].join('');
+        entitySelect.value=selectedEntity;
+      }
+      const statusChip=byId('financeApiStatusChip');
+      if(statusChip){
+        const ready=result.status==='available';
+        statusChip.textContent=ready?'Finance data loaded':(result.status==='missing_source'?'Upload finance pack':'Finance pack incomplete');
+        statusChip.className=`chip ${ready?'green':'amber'}`;
+      }
+      const k=result.kpis||{};
+      const map=[['revenue','financeKpiRevenue','financeKpiRevenueMeta',false],['gross_profit','financeKpiGrossProfit','financeKpiGrossProfitMeta',false],['net_profit','financeKpiNetProfit','financeKpiNetProfitMeta',false],['operating_expenses','financeKpiOpex','financeKpiOpexMeta',false],['operating_cash_flow','financeKpiOcf','financeKpiOcfMeta',false],['net_profit_margin','financeKpiMargin','financeKpiMarginMeta',true]];
+      map.forEach(([key,valueId,metaId,percent])=>{
+        const metric=k[key], node=byId(valueId), meta=byId(metaId); if(!node)return;
+        const ok=metric?.status==='available' || metric?.status==='multi_currency';
+        node.textContent=financeMetricText(metric,percent); node.classList.toggle('finance-unmapped',!ok);
+        if(meta)meta.textContent=financeMetricMeta(metric,'Awaiting mapped finance data');
+      });
+      const multiple=(result.currencies||[]).length>1 && !result.selected_currency;
+      if(multiple){
+        ['financeRevenueTrend','financeProfitTrend','financeRevenueMix','financeExpensesBreakdown','financeCashFlow','financeTopExpenses','financeBudgetActual','financeAccountBalances','financeProfitSummary'].forEach(id=>renderFinancePlaceholder(id,'Select a currency to compare values','The pack contains multiple currencies. Choose one in the Currency filter; no FX conversion is applied.'));
+      } else {
+        const fmtRows=(rows)=>rows||[];
+        renderFinanceBars('financeRevenueTrend',fmtRows(result.revenue_trend),[{key:'actual',label:'Actual'},{key:'budget',label:'Budget'}],'period','No revenue actuals','Upload P&L actual rows classified as REVENUE.');
+        renderFinanceBars('financeProfitTrend',fmtRows(result.profitability_trend),[{key:'gross_profit',label:'Gross profit'},{key:'net_profit',label:'Net profit'}],'period','No profitability trend','Revenue, COGS and remaining P&L lines are required.');
+        renderFinanceBars('financeRevenueMix',fmtRows(result.revenue_by_category),[{key:'value',label:'Revenue'}],'label','No revenue categories','Add CATEGORY values to P&L revenue rows.');
+        renderFinanceBars('financeExpensesBreakdown',fmtRows(result.expenses_by_category),[{key:'value',label:'Expense'}],'label','No expense categories','Upload COGS and expense actuals with CATEGORY values.');
+        const cashRows=(result.cash_flow_by_period||[]).map(x=>({...x,label:x.period}));
+        renderFinanceBars('financeCashFlow',cashRows,[{key:'operating',label:'Operating'},{key:'investing',label:'Investing'},{key:'financing',label:'Financing'}],'period','No classified cash-flow rows','Upload CASH_FLOW rows with OPERATING, INVESTING or FINANCING classification.');
+        renderFinanceBars('financeTopExpenses',fmtRows(result.expenses_by_category),[{key:'value',label:'Expense'}],'label','No expense categories','Upload expense actuals with category labels.');
+        const budgetRows=(result.budget_vs_actual||[]).map(x=>({...x,label:`${x.period} · ${x.category}`}));
+        renderFinanceBars('financeBudgetActual',budgetRows,[{key:'actual',label:'Actual'},{key:'budget',label:'Budget'}],'label','No budget comparison','Upload approved BUDGET rows with matching period, currency and category values.');
+        renderFinanceBars('financeAccountBalances',fmtRows(result.account_balances),[{key:'value',label:'Closing balance'}],'label','No account balances','Upload TRIAL_BALANCE rows classified as CASH, ACCOUNTS_RECEIVABLE, ACCOUNTS_PAYABLE, INVENTORY or OTHER.');
+        renderFinanceSummary('financeProfitSummary',result.profitability_summary,[{key:'gross_profit',label:'Gross profit'},{key:'operating_profit',label:'Operating profit'},{key:'net_profit',label:'Net profit'}],'No profitability summary','P&L actual rows have not been uploaded or are outside the selected filters.');
+      }
+      if(note){
+        if(result.status==='missing_source')note.textContent=result.message;
+        else note.textContent=`Finance Reporting Pack: ${result.ingestion_count} upload(s), ${result.row_count} rows. Period ${result.from_period||'all available'} to ${result.to_period||'latest'} · Entity ${result.selected_entity||'All Entities'} · Currency ${result.selected_currency||'all'}. ${result.message}${(result.warnings||[]).length?' Warnings: '+result.warnings.join(' '):''}`;
+      }
+      if(byId('financeRegisterCount'))byId('financeRegisterCount').textContent=`${result.row_count||0} finance rows · ${result.ingestion_count||0} pack(s)`;
+    } catch(error) {
+      if(note)note.textContent=`Finance dashboard API unavailable: ${error.message}. The rest of the workspace may still be connected.`;
+      const statusChip=byId('financeApiStatusChip'); if(statusChip){statusChip.textContent='Finance API unavailable';statusChip.className='chip red';}
+      ['financeKpiRevenue','financeKpiGrossProfit','financeKpiNetProfit','financeKpiOpex','financeKpiOcf','financeKpiMargin'].forEach(id=>{if(byId(id))byId(id).textContent='API unavailable';});
+    }
   }
 
   function renderLineChart(targetId, points, dateKey, valueKey) {
@@ -1218,7 +1344,7 @@ renderInvestigation();
 
   window.uploadExtract = async (file) => {
     if (!modulesCache.length) { toast('Module catalog is not available. Refresh and try again.'); return; }
-    const choices = modulesCache.map(m => `${m.key} — ${m.name}`).join('\n');
+    const choices = modulesCache.map(m => `${m.key} — ${m.name || m.role || 'Module'}`).join('\n');
     const moduleKey = prompt(`Enter the module key for this extract:\n\n${choices}`, 'plant-controller');
     if (!moduleKey) return;
     const chosen = modulesCache.find(m => m.key.toLowerCase() === moduleKey.trim().toLowerCase());
@@ -1275,6 +1401,10 @@ renderInvestigation();
   });
   byId('exceptionSearch')?.addEventListener('input', () => renderExceptions(exceptionsCache));
   byId('ctrlTopExceptions')?.addEventListener('click', event => { const row=event.target.closest('tr[data-exception-id]'); if(row) openApiInvestigation(row.dataset.exceptionId); });
+  byId('financeFromDate')?.addEventListener('change',()=>loadFinanceDashboard());
+  byId('financeToDate')?.addEventListener('change',()=>loadFinanceDashboard());
+  byId('financeEntity')?.addEventListener('change',()=>loadFinanceDashboard());
+  byId('financeCurrency')?.addEventListener('change',()=>loadFinanceDashboard());
   byId('financeRecentAlerts')?.addEventListener('click', event => { const row=event.target.closest('tr[data-exception-id]'); if(row) openApiInvestigation(row.dataset.exceptionId); });
   byId('controllerRefreshBtn')?.addEventListener('click', async () => { const ok=await loadApiData(); if(ok) toast('Controller visuals refreshed from current API records.'); });
   document.querySelectorAll('[data-market-tab]').forEach(btn=>btn.addEventListener('click',()=>{
