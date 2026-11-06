@@ -81,3 +81,40 @@ def test_equity_symbol_validation(monkeypatch):
     with TestClient(app) as client:
         response = client.get("/api/v1/market/equity", params={"symbol": "IBM/../bad"})
         assert response.status_code == 422
+
+
+
+def test_market_dashboard_returns_provider_backed_cards_and_marks_dxy_unavailable(monkeypatch):
+    monkeypatch.setattr(market_data.settings, "alpha_vantage_api_key", "test-key")
+    market_data.clear_market_cache()
+
+    def fake_cached_get(cache_key, params, ttl_seconds):
+        fn = params["function"]
+        if fn == "INDEX_DATA":
+            symbol = params["symbol"]
+            base = {"DJI": 43000, "SPX": 5900, "COMP": 19000, "VIX": 18}[symbol]
+            return {"data": [
+                {"date": "2026-11-04", "close": str(base - 100)},
+                {"date": "2026-11-05", "close": str(base)},
+            ]}
+        if fn == "GOLD_SILVER_HISTORY":
+            base = 3950 if params["symbol"] == "GOLD" else 48
+            return {"Meta Data": {"Unit": "USD per troy ounce"}, "data": [
+                {"date": "2026-11-04", "value": str(base - 5)},
+                {"date": "2026-11-05", "value": str(base)},
+            ]}
+        if fn == "BRENT":
+            return {"Meta Data": {"Unit": "USD per barrel"}, "data": [
+                {"date": "2026-11-04", "value": "63"},
+                {"date": "2026-11-05", "value": "64"},
+            ]}
+        raise AssertionError(params)
+
+    monkeypatch.setattr(market_data, "_cached_get", fake_cached_get)
+    result = market_data.market_dashboard()
+    assert result["cards"]["us_stocks"]["items"]["sp500"]["value"] == 5900
+    assert result["cards"]["gold"]["value"] == 3950
+    assert result["cards"]["brent"]["value"] == 64
+    assert result["cards"]["vix"]["value"] == 18
+    assert result["cards"]["market_mood"]["label"] == "Balanced"
+    assert result["cards"]["usd_index"]["status"] == "unavailable"

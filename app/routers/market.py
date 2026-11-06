@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException, Query
 
-from ..services.market_data import MarketDataError, equity_history, metals_overview, search_equities
+from ..services.market_data import MarketDataError, equity_history, market_dashboard, metals_overview, search_equities
 
 router = APIRouter(prefix="/market", tags=["market-intelligence"])
 
@@ -31,3 +31,8 @@ def market_metals():
         first = result["errors"][0]
         raise HTTPException(status_code=first["status_code"], detail=first["detail"])
     return result
+
+
+@router.get("/dashboard")
+def market_dashboard_view():
+    return _run(market_dashboard)
