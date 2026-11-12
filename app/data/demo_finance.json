@@ -1,0 +1,519 @@
+{
+  "data_mode": "DEMO_SYNTHETIC",
+  "company": "Meridian Bicycle Co. (fictional sample company)",
+  "entity": "Plant 100 \u2014 SFO",
+  "currency": "USD",
+  "period_start": "2025-07-01",
+  "period_end": "2026-06-30",
+  "periods": [
+    {
+      "period": "2025-07",
+      "period_label": "Jul 25",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 125000.0,
+      "budget_revenue": 127500.0,
+      "cogs": 78400.0,
+      "budget_cogs": 80767.68,
+      "gross_profit": 46600.0,
+      "opex": 18970.0,
+      "budget_opex": 19444.25,
+      "other_expenses": 3125.0,
+      "tax": 5146.05,
+      "net_profit": 19358.95,
+      "budget_net_profit": 19039.45,
+      "operating_cash_flow": 21483.95,
+      "investing_cash_flow": -4000.0,
+      "financing_cash_flow": 750.0,
+      "net_cash_flow": 18233.95,
+      "revenue_categories": {
+        "Product sales": 92500.0,
+        "Service income": 17500.0,
+        "Spare parts": 10000.0,
+        "Other income": 5000.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 6449.8,
+        "Marketing": 2466.1,
+        "Rent & utilities": 3035.2,
+        "Software & tools": 1327.9,
+        "Logistics": 3414.6,
+        "Other expenses": 2276.4
+      }
+    },
+    {
+      "period": "2025-08",
+      "period_label": "Aug 25",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 128750.0,
+      "budget_revenue": 130037.5,
+      "cogs": 80630.87,
+      "budget_cogs": 82375.12,
+      "gross_profit": 48119.13,
+      "opex": 19558.64,
+      "budget_opex": 20047.61,
+      "other_expenses": 3218.75,
+      "tax": 5321.77,
+      "net_profit": 20019.97,
+      "budget_net_profit": 19247.43,
+      "operating_cash_flow": 21951.22,
+      "investing_cash_flow": -4635.0,
+      "financing_cash_flow": -515.0,
+      "net_cash_flow": 16801.22,
+      "revenue_categories": {
+        "Product sales": 95275.0,
+        "Service income": 18025.0,
+        "Spare parts": 10300.0,
+        "Other income": 5150.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 6649.94,
+        "Marketing": 2542.62,
+        "Rent & utilities": 3129.38,
+        "Software & tools": 1369.1,
+        "Logistics": 3520.56,
+        "Other expenses": 2347.04
+      }
+    },
+    {
+      "period": "2025-09",
+      "period_label": "Sep 25",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 126250.0,
+      "budget_revenue": 126250.0,
+      "cogs": 78946.45,
+      "budget_cogs": 79975.84,
+      "gross_profit": 47303.55,
+      "opex": 19198.02,
+      "budget_opex": 19677.97,
+      "other_expenses": 3156.25,
+      "tax": 5239.35,
+      "net_profit": 19709.93,
+      "budget_net_profit": 18517.55,
+      "operating_cash_flow": 21351.18,
+      "investing_cash_flow": -4040.0,
+      "financing_cash_flow": -505.0,
+      "net_cash_flow": 16806.18,
+      "revenue_categories": {
+        "Product sales": 93425.0,
+        "Service income": 17675.0,
+        "Spare parts": 10100.0,
+        "Other income": 5050.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 6527.33,
+        "Marketing": 2495.74,
+        "Rent & utilities": 3071.68,
+        "Software & tools": 1343.86,
+        "Logistics": 3455.64,
+        "Other expenses": 2303.77
+      }
+    },
+    {
+      "period": "2025-10",
+      "period_label": "Oct 25",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 133750.0,
+      "budget_revenue": 136425.0,
+      "cogs": 83510.5,
+      "budget_cogs": 86421.42,
+      "gross_profit": 50239.5,
+      "opex": 20358.79,
+      "budget_opex": 20867.76,
+      "other_expenses": 3343.75,
+      "tax": 5572.76,
+      "net_profit": 20964.2,
+      "budget_net_profit": 20322.9,
+      "operating_cash_flow": 23237.95,
+      "investing_cash_flow": -4815.0,
+      "financing_cash_flow": 802.5,
+      "net_cash_flow": 19225.45,
+      "revenue_categories": {
+        "Product sales": 98975.0,
+        "Service income": 18725.0,
+        "Spare parts": 10700.0,
+        "Other income": 5350.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 6921.99,
+        "Marketing": 2646.64,
+        "Rent & utilities": 3257.41,
+        "Software & tools": 1425.12,
+        "Logistics": 3664.58,
+        "Other expenses": 2443.05
+      }
+    },
+    {
+      "period": "2025-11",
+      "period_label": "Nov 25",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 137500.0,
+      "budget_revenue": 141625.0,
+      "cogs": 85722.56,
+      "budget_cogs": 89715.47,
+      "gross_profit": 51777.44,
+      "opex": 20950.47,
+      "budget_opex": 21474.23,
+      "other_expenses": 3437.5,
+      "tax": 5751.79,
+      "net_profit": 21637.68,
+      "budget_net_profit": 21246.79,
+      "operating_cash_flow": 23700.18,
+      "investing_cash_flow": -4400.0,
+      "financing_cash_flow": -550.0,
+      "net_cash_flow": 18750.18,
+      "revenue_categories": {
+        "Product sales": 101750.0,
+        "Service income": 19250.0,
+        "Spare parts": 11000.0,
+        "Other income": 5500.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 7123.16,
+        "Marketing": 2723.56,
+        "Rent & utilities": 3352.08,
+        "Software & tools": 1466.53,
+        "Logistics": 3771.08,
+        "Other expenses": 2514.06
+      }
+    },
+    {
+      "period": "2025-12",
+      "period_label": "Dec 25",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 140000.0,
+      "budget_revenue": 141400.0,
+      "cogs": 87149.44,
+      "budget_cogs": 89572.94,
+      "gross_profit": 52850.56,
+      "opex": 21352.63,
+      "budget_opex": 21886.45,
+      "other_expenses": 3500.0,
+      "tax": 5879.57,
+      "net_profit": 22118.36,
+      "budget_net_profit": 20860.43,
+      "operating_cash_flow": 23938.36,
+      "investing_cash_flow": -5040.0,
+      "financing_cash_flow": -560.0,
+      "net_cash_flow": 18338.36,
+      "revenue_categories": {
+        "Product sales": 103600.0,
+        "Service income": 19600.0,
+        "Spare parts": 11200.0,
+        "Other income": 5600.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 7259.89,
+        "Marketing": 2775.84,
+        "Rent & utilities": 3416.42,
+        "Software & tools": 1494.68,
+        "Logistics": 3843.47,
+        "Other expenses": 2562.33
+      }
+    },
+    {
+      "period": "2026-01",
+      "period_label": "Jan 26",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 135000.0,
+      "budget_revenue": 137700.0,
+      "cogs": 83909.95,
+      "budget_cogs": 87229.09,
+      "gross_profit": 51090.05,
+      "opex": 20610.53,
+      "budget_opex": 21125.79,
+      "other_expenses": 3375.0,
+      "tax": 5691.95,
+      "net_profit": 21412.57,
+      "budget_net_profit": 20463.07,
+      "operating_cash_flow": 23707.57,
+      "investing_cash_flow": -4320.0,
+      "financing_cash_flow": 810.0,
+      "net_cash_flow": 20197.57,
+      "revenue_categories": {
+        "Product sales": 99900.0,
+        "Service income": 18900.0,
+        "Spare parts": 10800.0,
+        "Other income": 5400.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 7007.58,
+        "Marketing": 2679.37,
+        "Rent & utilities": 3297.68,
+        "Software & tools": 1442.74,
+        "Logistics": 3709.9,
+        "Other expenses": 2473.26
+      }
+    },
+    {
+      "period": "2026-02",
+      "period_label": "Feb 26",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 141250.0,
+      "budget_revenue": 141250.0,
+      "cogs": 87661.78,
+      "budget_cogs": 89477.92,
+      "gross_profit": 53588.22,
+      "opex": 21586.15,
+      "budget_opex": 22125.8,
+      "other_expenses": 3531.25,
+      "tax": 5978.87,
+      "net_profit": 22491.95,
+      "budget_net_profit": 20630.87,
+      "operating_cash_flow": 24610.7,
+      "investing_cash_flow": -5085.0,
+      "financing_cash_flow": -565.0,
+      "net_cash_flow": 18960.7,
+      "revenue_categories": {
+        "Product sales": 104525.0,
+        "Service income": 19775.0,
+        "Spare parts": 11300.0,
+        "Other income": 5650.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 7339.29,
+        "Marketing": 2806.2,
+        "Rent & utilities": 3453.78,
+        "Software & tools": 1511.03,
+        "Logistics": 3885.51,
+        "Other expenses": 2590.34
+      }
+    },
+    {
+      "period": "2026-03",
+      "period_label": "Mar 26",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 145000.0,
+      "budget_revenue": 146450.0,
+      "cogs": 89852.67,
+      "budget_cogs": 92771.97,
+      "gross_profit": 55147.33,
+      "opex": 22181.24,
+      "budget_opex": 22735.77,
+      "other_expenses": 3625.0,
+      "tax": 6161.63,
+      "net_profit": 23179.46,
+      "budget_net_profit": 21552.0,
+      "operating_cash_flow": 25064.46,
+      "investing_cash_flow": -4640.0,
+      "financing_cash_flow": -580.0,
+      "net_cash_flow": 19844.46,
+      "revenue_categories": {
+        "Product sales": 107300.0,
+        "Service income": 20300.0,
+        "Spare parts": 11600.0,
+        "Other income": 5800.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 7541.62,
+        "Marketing": 2883.56,
+        "Rent & utilities": 3549.0,
+        "Software & tools": 1552.69,
+        "Logistics": 3992.62,
+        "Other expenses": 2661.75
+      }
+    },
+    {
+      "period": "2026-04",
+      "period_label": "Apr 26",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 148750.0,
+      "budget_revenue": 151725.0,
+      "cogs": 92036.5,
+      "budget_cogs": 96113.54,
+      "gross_profit": 56713.5,
+      "opex": 22777.47,
+      "budget_opex": 23346.91,
+      "other_expenses": 3718.75,
+      "tax": 6345.63,
+      "net_profit": 23871.65,
+      "budget_net_profit": 22492.43,
+      "operating_cash_flow": 26400.4,
+      "investing_cash_flow": -5355.0,
+      "financing_cash_flow": 892.5,
+      "net_cash_flow": 21937.9,
+      "revenue_categories": {
+        "Product sales": 110075.0,
+        "Service income": 20825.0,
+        "Spare parts": 11900.0,
+        "Other income": 5950.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 7744.34,
+        "Marketing": 2961.07,
+        "Rent & utilities": 3644.4,
+        "Software & tools": 1594.42,
+        "Logistics": 4099.94,
+        "Other expenses": 2733.3
+      }
+    },
+    {
+      "period": "2026-05",
+      "period_label": "May 26",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 146250.0,
+      "budget_revenue": 146250.0,
+      "cogs": 90352.08,
+      "budget_cogs": 92645.28,
+      "gross_profit": 55897.92,
+      "opex": 22416.85,
+      "budget_opex": 22977.27,
+      "other_expenses": 3656.25,
+      "tax": 6263.21,
+      "net_profit": 23561.61,
+      "budget_net_profit": 21307.25,
+      "operating_cash_flow": 25755.36,
+      "investing_cash_flow": -4680.0,
+      "financing_cash_flow": -585.0,
+      "net_cash_flow": 20490.36,
+      "revenue_categories": {
+        "Product sales": 108225.0,
+        "Service income": 20475.0,
+        "Spare parts": 11700.0,
+        "Other income": 5850.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 7621.73,
+        "Marketing": 2914.19,
+        "Rent & utilities": 3586.7,
+        "Software & tools": 1569.18,
+        "Logistics": 4035.03,
+        "Other expenses": 2690.02
+      }
+    },
+    {
+      "period": "2026-06",
+      "period_label": "Jun 26",
+      "entity": "Plant 100 \u2014 SFO",
+      "currency": "USD",
+      "revenue": 152500.0,
+      "budget_revenue": 154025.0,
+      "cogs": 94069.81,
+      "budget_cogs": 97570.52,
+      "gross_profit": 58430.19,
+      "opex": 23397.98,
+      "budget_opex": 23982.93,
+      "other_expenses": 3812.5,
+      "tax": 6556.14,
+      "net_profit": 24663.57,
+      "budget_net_profit": 22610.53,
+      "operating_cash_flow": 26646.07,
+      "investing_cash_flow": -5490.0,
+      "financing_cash_flow": -610.0,
+      "net_cash_flow": 20546.07,
+      "revenue_categories": {
+        "Product sales": 112850.0,
+        "Service income": 21350.0,
+        "Spare parts": 12200.0,
+        "Other income": 6100.0
+      },
+      "expense_categories": {
+        "Salaries & benefits": 7955.31,
+        "Marketing": 3041.74,
+        "Rent & utilities": 3743.68,
+        "Software & tools": 1637.86,
+        "Logistics": 4211.64,
+        "Other expenses": 2807.75
+      }
+    }
+  ],
+  "forecast": [
+    {
+      "period": "2026-07",
+      "period_label": "Jul 26",
+      "revenue": 155085.24,
+      "gross_profit": 59420.72,
+      "net_profit": 25081.68,
+      "type": "Forecast"
+    },
+    {
+      "period": "2026-08",
+      "period_label": "Aug 26",
+      "revenue": 157714.3,
+      "gross_profit": 60428.04,
+      "net_profit": 25506.87,
+      "type": "Forecast"
+    },
+    {
+      "period": "2026-09",
+      "period_label": "Sep 26",
+      "revenue": 160387.93,
+      "gross_profit": 61452.44,
+      "net_profit": 25939.27,
+      "type": "Forecast"
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Cash & bank",
+      "amount": 285000.0,
+      "type": "asset"
+    },
+    {
+      "name": "Accounts receivable",
+      "amount": 194000.0,
+      "type": "asset"
+    },
+    {
+      "name": "Inventory",
+      "amount": 318000.0,
+      "type": "asset"
+    },
+    {
+      "name": "Property, plant & equipment",
+      "amount": 465000.0,
+      "type": "asset"
+    },
+    {
+      "name": "Accounts payable",
+      "amount": 172000.0,
+      "type": "liability"
+    },
+    {
+      "name": "Term debt",
+      "amount": 260000.0,
+      "type": "liability"
+    },
+    {
+      "name": "Share capital & retained earnings",
+      "amount": 830000.0,
+      "type": "equity"
+    }
+  ],
+  "provenance": {
+    "source_files": [
+      "sample_data/02-corporate-controller-sample-extract.xlsx (BKPF/BSEG)",
+      "sample_data/05-fpa-sample-extract.xlsx (COEP)",
+      "sample_data/06-treasury-sample-extract.xlsx (CE_STATEMENT_HEADERS/CE_STATEMENT_LINES)"
+    ],
+    "anchors": {
+      "BSEG account 500000 credit-side amount used only as a scale anchor": 125000.0,
+      "BSEG account 600000 debit-side amount used only as a scale anchor": 78400.0,
+      "BSEG account 700000 debit-side amount used only as a scale anchor": 18970.0,
+      "COEP July 2025 actual cost-element lines (amount; not consolidated to P&L)": 66850.0,
+      "COEP July 2025 plan cost-element lines (amount; not consolidated to P&L)": 63500.0,
+      "Treasury reconciled USD statement lines net movement (not a classified cash flow)": 21459.25
+    },
+    "account_mapping": {
+      "500000": "Synthetic demo revenue assumption",
+      "600000": "Synthetic demo cost-of-sales assumption",
+      "700000": "Synthetic demo operating-expense assumption"
+    },
+    "assumptions": [
+      "The bundled Source Ledger workbooks are fictional illustrative examples, not customer records.",
+      "The sample GL workbook provides account IDs and amounts but no Chart of Accounts descriptions. Account-role mappings are illustrative assumptions used only to size this synthetic dataset.",
+      "Only the first-month anchors are tied to sample row magnitudes. Remaining monthly values, categories, budgets, forecasts and balance-sheet summaries are deterministic synthetic demo values.",
+      "The demo P&L, cash flow and account balances are not reconciled financial statements and must not be used for management reporting, audit, credit, tax or external disclosure."
+    ]
+  }
+}

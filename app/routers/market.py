@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException, Query
 
-from ..services.market_data import MarketDataError, equity_history, market_dashboard, metals_overview, search_equities
+from ..services.market_data import MarketDataError, equity_history, metals_overview, search_equities
+from ..services.public_market_dashboard import PublicMarketError, public_market_dashboard
 
 router = APIRouter(prefix="/market", tags=["market-intelligence"])
 
@@ -35,4 +36,8 @@ def market_metals():
 
 @router.get("/dashboard")
 def market_dashboard_view():
-    return _run(market_dashboard)
+    # Public, low-cost reference sources; this endpoint does not consume Alpha Vantage quota.
+    try:
+        return public_market_dashboard()
+    except PublicMarketError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc

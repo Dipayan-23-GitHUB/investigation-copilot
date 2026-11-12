@@ -179,20 +179,19 @@
   .finance-pill{display:inline-block;padding:3px 6px;border-radius:20px;font-size:8px;font-weight:800;background:#eef3fb;color:#526886}
   .finance-pill.high{background:#fff0ee;color:#ba3b35}.finance-pill.medium{background:#fff6df;color:#9a6500}.finance-pill.low{background:#eaf8f0;color:#15804c}
   .finance-footnote{font-size:9px;color:#8491a4;line-height:1.5;padding:2px 1px}
-  .finance-data-list{display:grid;gap:9px}
-  .finance-data-row{display:grid;grid-template-columns:minmax(82px,1fr) minmax(90px,2fr) auto;gap:8px;align-items:center;font-size:10px;color:#425672}
-  .finance-data-track{height:9px;background:#edf2f8;border-radius:99px;overflow:hidden}
-  .finance-data-fill{height:100%;border-radius:99px;background:#3976dc;min-width:2px}
-  .finance-data-fill.secondary{background:#19a66a}.finance-data-fill.tertiary{background:#dc9b24}
-  .finance-data-value{font-weight:800;color:#19345d;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-  .finance-data-legend{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 8px;font-size:9px;color:#75849a}
-  .finance-data-legend span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;background:#3976dc;margin-right:5px}
-  .finance-data-legend span:nth-child(2):before{background:#19a66a}.finance-data-legend span:nth-child(3):before{background:#dc9b24}
-  .finance-data-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-  .finance-data-summary div{background:#f7faff;border:1px solid #e7edf6;border-radius:8px;padding:10px}
-  .finance-data-summary label{display:block;color:#8290a5;font-size:8px;font-weight:800;text-transform:uppercase}
-  .finance-data-summary strong{display:block;color:#17345f;font-size:15px;margin:5px 0}
-  .finance-data-summary small{display:block;color:#8290a5;font-size:9px}
+  .finance-data-badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 8px;background:#fff4db;color:#8c5a00;font-size:8px;font-weight:900;letter-spacing:.06em}
+  .finance-plot{width:100%;height:172px;display:block;overflow:visible}
+  .finance-plot text{font-size:9px;fill:#7c8ba1}
+  .finance-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:9px;color:#718096;margin:4px 0 0}
+  .finance-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
+  .finance-bars{display:grid;gap:10px}
+  .finance-bar-row{display:grid;grid-template-columns:minmax(90px,1fr) minmax(80px,2fr) auto;gap:9px;align-items:center;font-size:9px;color:#536782}
+  .finance-bar-track{height:9px;background:#edf2f8;border-radius:99px;overflow:hidden}
+  .finance-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#2563eb,#83a5f4)}
+  .finance-bar-fill.green{background:linear-gradient(90deg,#15965e,#70c99a)}.finance-bar-fill.amber{background:linear-gradient(90deg,#d18a18,#f2c36f)}.finance-bar-fill.red{background:linear-gradient(90deg,#c7473e,#f18e86)}
+  .finance-bar-value{font-weight:800;text-align:right;color:#1a3155;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .finance-data-table{width:100%;border-collapse:collapse}.finance-data-table th,.finance-data-table td{font-size:9px;padding:7px 5px;border-bottom:1px solid #eef2f7;text-align:left}.finance-data-table th{color:#8290a5;text-transform:uppercase;letter-spacing:.04em}.finance-data-table td:last-child,.finance-data-table th:last-child{text-align:right}
+  .finance-source-foot{font-size:8px;color:#8794a8;line-height:1.45;margin-top:9px}
   @media(max-width:1200px){.finance-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.finance-layout{grid-template-columns:140px minmax(0,1fr)}}
   @media(max-width:760px){.finance-page{padding:10px}.finance-toolbar{align-items:flex-start;flex-direction:column}.finance-layout{grid-template-columns:1fr}.finance-rail{min-height:0}.finance-rail nav{display:flex;gap:4px;overflow:auto}.finance-rail a{white-space:nowrap}.finance-rail-foot{display:none}.finance-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.finance-panel.span-2,.finance-panel.span-3,.finance-panel.span-4,.finance-panel.span-6{grid-column:span 2}.finance-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.finance-mini-summary{grid-template-columns:1fr}}
 
@@ -331,12 +330,11 @@
             <div class="finance-filters">
               <input id="financeFromDate" type="date" aria-label="From date" />
               <input id="financeToDate" type="date" aria-label="To date" />
-              <select id="financeEntity"><option value="All Entities">All Entities</option><option value="Plant 100 — SFO">Plant 100 — SFO</option><option value="Plant 200 — Austin">Plant 200 — Austin</option></select>
-              <select id="financeCurrency" aria-label="Currency"><option value="">All Currencies</option></select>
+              <select id="financeEntity"><option>All Entities</option><option>Plant 100 — SFO</option></select>
               <button class="btn" id="controllerRefreshBtn" type="button">↻ Refresh</button>
             </div>
           </div>
-          <div class="finance-note" id="financeDataNote">Finance dashboard layout is active. Revenue, gross profit, net profit, operating expenses, cash flow, budget and account balances require mapped and reconciled finance extracts. The current connected register supplies exception alerts only; missing finance values are intentionally not estimated.</div>
+          <div class="finance-note" id="financeDataNote">Loading the reproducible synthetic finance demonstration data. These values are fictional illustrations, not customer actuals; live exception and action signals are read separately from the connected application register.</div>
           <div class="finance-layout">
             <aside class="finance-rail">
               <div class="finance-rail-brand">Meridian <span>FINANCE INTELLIGENCE</span></div>
@@ -351,30 +349,30 @@
                 <a href="#finance-reports">▧ &nbsp; Reports</a>
                 <a href="#finance-accounts">▣ &nbsp; Accounts</a>
               </nav>
-              <div class="finance-rail-foot">DATA COVERAGE<br/><strong id="financeRegisterCount">Loading finance data…</strong><br/>Finance reporting pack + exception register<br/><br/>No ERP writeback</div>
+              <div class="finance-rail-foot">DATA COVERAGE<br/><strong id="financeRegisterCount">Loading exception register…</strong><br/>Exception register only<br/><br/>No ERP writeback</div>
             </aside>
             <div class="finance-stage">
               <section id="finance-overview">
-                <div class="finance-section-head"><div><h2>Financial overview</h2><p>Selected period · all entities</p></div><span class="chip amber" id="financeApiStatusChip">Finance data pending</span></div>
+                <div class="finance-section-head"><div><h2>Financial overview</h2><p>Selected period · all entities</p></div><span class="finance-data-badge" id="financeModeBadge">DEMO DATA · SYNTHETIC</span></div>
                 <div class="finance-kpis">
-                  <div class="finance-kpi"><div class="finance-kpi-top">Total Revenue <span class="finance-kpi-icon">$</span></div><strong id="financeKpiRevenue" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiRevenueMeta">P&amp;L actuals required</small></div>
-                  <div class="finance-kpi"><div class="finance-kpi-top">Gross Profit <span class="finance-kpi-icon">▥</span></div><strong id="financeKpiGrossProfit" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiGrossProfitMeta">Revenue and COGS lines required</small></div>
-                  <div class="finance-kpi"><div class="finance-kpi-top">Net Profit <span class="finance-kpi-icon">◔</span></div><strong id="financeKpiNetProfit" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiNetProfitMeta">Complete P&amp;L lines required</small></div>
-                  <div class="finance-kpi"><div class="finance-kpi-top">Operating Expenses <span class="finance-kpi-icon">▣</span></div><strong id="financeKpiOpex" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiOpexMeta">Operating expense lines required</small></div>
-                  <div class="finance-kpi"><div class="finance-kpi-top">Operating Cash Flow <span class="finance-kpi-icon">▤</span></div><strong id="financeKpiOcf" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiOcfMeta">Classified operating cash flow required</small></div>
-                  <div class="finance-kpi"><div class="finance-kpi-top">Net Profit Margin <span class="finance-kpi-icon">◌</span></div><strong id="financeKpiMargin" class="finance-unmapped">Upload finance pack</strong><small id="financeKpiMarginMeta">Net profit divided by revenue</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Total Revenue <span class="finance-kpi-icon">$</span></div><strong class="finance-unmapped">Loading…</strong><small>Selected demo period · USD</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Gross Profit <span class="finance-kpi-icon">▥</span></div><strong class="finance-unmapped">Loading…</strong><small>Revenue less cost of sales</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Net Profit <span class="finance-kpi-icon">◔</span></div><strong class="finance-unmapped">Loading…</strong><small>Synthetic illustrative P&amp;L</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Operating Expenses <span class="finance-kpi-icon">▣</span></div><strong class="finance-unmapped">Loading…</strong><small>Illustrative operating spend</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Operating Cash Flow <span class="finance-kpi-icon">▤</span></div><strong class="finance-unmapped">Loading…</strong><small>Synthetic illustrative cash flow</small></div>
+                  <div class="finance-kpi"><div class="finance-kpi-top">Net Profit Margin <span class="finance-kpi-icon">◌</span></div><strong class="finance-unmapped">Loading…</strong><small>Net profit / revenue</small></div>
                 </div>
               </section>
               <div class="finance-grid">
-                <article class="finance-panel span-2" id="finance-revenue"><div class="finance-panel-head"><h3>Revenue Trend</h3><span>Actual vs Budget · Last 12 Months</span></div><div class="finance-panel-body" id="financeRevenueTrend"><div class="finance-placeholder"><strong>Upload a Finance Reporting Pack</strong><small>Monthly P&amp;L actuals and budget lines will appear here.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-profitability"><div class="finance-panel-head"><h3>Profit &amp; Margin Trend</h3><span>Actual · Last 12 Months</span></div><div class="finance-panel-body" id="financeProfitTrend"><div class="finance-placeholder"><strong>Awaiting P&amp;L actuals</strong><small>Gross profit and net profit trends will be calculated from mapped statement lines.</small></div></div></article>
-                <article class="finance-panel span-2"><div class="finance-panel-head"><h3>Revenue by Category</h3><span>Revenue mix</span></div><div class="finance-panel-body" id="financeRevenueMix"><div class="finance-placeholder"><strong>Revenue categories not loaded</strong><small>Category labels in the uploaded P&amp;L actuals populate this view.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-expenses"><div class="finance-panel-head"><h3>Expenses Breakdown</h3><span>By account category</span></div><div class="finance-panel-body" id="financeExpensesBreakdown"><div class="finance-placeholder"><strong>Awaiting expense actuals</strong><small>COGS and expense categories will be grouped from uploaded P&amp;L lines.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-cashflow"><div class="finance-panel-head"><h3>Cash Flow Overview</h3><span>Operating · Investing · Financing</span></div><div class="finance-panel-body" id="financeCashFlow"><div class="finance-placeholder"><strong>Awaiting classified cash-flow lines</strong><small>Upload operating, investing and financing cash-flow rows.</small></div></div></article>
-                <article class="finance-panel span-2"><div class="finance-panel-head"><h3>Top Expense Categories</h3><span>Amount · % of total · vs prior</span></div><div class="finance-panel-body" id="financeTopExpenses"><div class="finance-placeholder"><strong>Awaiting expense categories</strong><small>Top categories will be ranked from uploaded expense actuals.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-budget"><div class="finance-panel-head"><h3>Budget vs Actual (YTD)</h3><span>Year to date</span></div><div class="finance-panel-body" id="financeBudgetActual"><div class="finance-placeholder"><strong>Awaiting approved budget</strong><small>Budget and actual lines are compared by period, account and category.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-accounts"><div class="finance-panel-head"><h3>Account Balance Summary</h3><span>Cash · AR · AP</span></div><div class="finance-panel-body" id="financeAccountBalances"><div class="finance-placeholder"><strong>Awaiting trial balance</strong><small>Cash, receivables, payables and inventory balances require closing-balance rows.</small></div></div></article>
-                <article class="finance-panel span-2" id="finance-forecast"><div class="finance-panel-head"><h3>Profitability Summary</h3><span>Gross · Operating · Net</span></div><div class="finance-panel-body" id="financeProfitSummary"><div class="finance-placeholder"><strong>Awaiting complete P&amp;L</strong><small>Gross, operating and net profit are calculated from the mapped lines.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-revenue"><div class="finance-panel-head"><h3>Revenue Trend</h3><span>Actual vs Budget · Last 12 Months</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">⌁</div><strong>Revenue trend awaits a mapped source</strong><small>Connect monthly actual revenue and approved budget extracts to plot the comparison.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-profitability"><div class="finance-panel-head"><h3>Profit &amp; Margin Trend</h3><span>Actual · Last 12 Months</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">◔</div><strong>Profitability data not connected</strong><small>Gross profit, net profit and margin will appear after P&amp;L account mapping and reconciliation.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-revenue-mix"><div class="finance-panel-head"><h3>Revenue by Category</h3><span>Revenue mix</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">◉</div><strong>No validated revenue categories</strong><small>Map product, service, subscription or other revenue dimensions to populate this view.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-expenses"><div class="finance-panel-head"><h3>Expenses Breakdown</h3><span>By account category</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">▤</div><strong>Expense categories not mapped</strong><small>Connect the general ledger and classify expense accounts before displaying totals or mix.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-cashflow"><div class="finance-panel-head"><h3>Cash Flow Overview</h3><span>Operating · Investing · Financing</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">⇄</div><strong>Cash flow statement not connected</strong><small>Connect validated cash flow or bank / treasury extracts. No cash balance is inferred from exceptions.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-expense-top"><div class="finance-panel-head"><h3>Top Expense Categories</h3><span>Amount · % of total · vs prior</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">▥</div><strong>Awaiting mapped expense detail</strong><small>Requires posted expense transactions, category mapping and a comparable prior period.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-budget"><div class="finance-panel-head"><h3>Budget vs Actual (YTD)</h3><span>Year to date</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">▥</div><strong>Budget not connected</strong><small>Upload an approved budget by period, entity and account to enable variance analysis.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-accounts"><div class="finance-panel-head"><h3>Account Balance Summary</h3><span>Cash · AR · AP</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">▣</div><strong>Trial balance not connected</strong><small>Map cash, receivables and payables accounts from a reconciled trial balance.</small></div></div></article>
+                <article class="finance-panel span-2" id="finance-forecast"><div class="finance-panel-head"><h3>Profitability Summary</h3><span>Gross · Operating · Net</span></div><div class="finance-panel-body"><div class="finance-placeholder"><div class="ph-icon">◉</div><strong>Profitability summary unavailable</strong><small>Requires a reconciled P&amp;L and approved reporting calendar.</small></div></div></article>
                 <article class="finance-panel span-6" id="finance-reports"><div class="finance-panel-head"><h3>Recent Alerts &amp; Controller Attention</h3><span>Current exception register · click a row to investigate</span></div><div class="finance-panel-body" style="padding:0;overflow:auto"><table class="finance-alert-table"><thead><tr><th>Exception</th><th>Material</th><th>Impact</th><th>Priority</th><th>Root Cause</th><th>Status</th></tr></thead><tbody id="financeRecentAlerts"><tr><td colspan="6" class="muted">Loading current exceptions…</td></tr></tbody></table></div></article>
                 <article class="finance-panel span-6"><div class="finance-panel-head"><h3>Live Controller Register Signals</h3><span>Read from current backend register</span></div><div class="finance-panel-body"><div class="finance-mini-summary">
                   <div class="finance-signal"><label>Active Exceptions</label><strong id="financeActiveExceptions">—</strong><small>Not closed</small></div>
@@ -382,7 +380,7 @@
                   <div class="finance-signal"><label>Open Actions</label><strong id="financeOpenActions">—</strong><small>Action register status not completed</small></div>
                 </div></div></article>
               </div>
-              <div class="finance-footnote">Data integrity: only values returned from connected and mapped sources will be displayed. No historical comparison, budget variance, FX conversion or accounting balance is invented from the exception register.</div>
+              <div class="finance-footnote">DEMO DATA NOTICE: Finance metrics, budgets, cash-flow rows, categories, forecasts and balance summaries are synthetic illustrations based on the fictional Source Ledger sample pack. Live exceptions and action counts come from the connected application register. Replace the demo fixture with mapped, reconciled company extracts before operational reporting.</div>
             </div>
           </div>
         </div>
@@ -400,12 +398,12 @@
             <article class="market-tile gold" id="tileGold"><h2>Gold</h2><div class="market-tile-value" id="marketGoldValue">—</div><div class="market-tile-change flat" id="marketGoldChange">Waiting for data</div><div class="market-tile-meta" id="marketGoldMeta">USD per troy ounce · daily</div><div class="market-tile-glyph">Au</div></article>
             <article class="market-tile silver" id="tileSilver"><h2>Silver</h2><div class="market-tile-value" id="marketSilverValue">—</div><div class="market-tile-change flat" id="marketSilverChange">Waiting for data</div><div class="market-tile-meta" id="marketSilverMeta">USD per troy ounce · daily</div><div class="market-tile-glyph">Ag</div></article>
             <article class="market-tile oil" id="tileBrent"><h2>Brent Crude</h2><div class="market-tile-value" id="marketBrentValue">—</div><div class="market-tile-change flat" id="marketBrentChange">Waiting for data</div><div class="market-tile-meta" id="marketBrentMeta">USD per barrel · daily reference</div><div class="market-tile-glyph">▤</div></article>
-            <article class="market-tile usd" id="tileUsd"><h2>U.S. Dollar</h2><div class="market-tile-value" id="marketUsdValue">Not connected</div><div class="market-tile-change flat" id="marketUsdChange">DXY feed required</div><div class="market-tile-meta" id="marketUsdMeta">The current Alpha Vantage adapter does not supply DXY.</div><div class="market-tile-glyph">$</div></article>
+            <article class="market-tile usd" id="tileUsd"><h2>U.S. Dollar · Broad Index</h2><div class="market-tile-value" id="marketUsdValue">Not connected</div><div class="market-tile-change flat" id="marketUsdChange">Loading broad USD index</div><div class="market-tile-meta" id="marketUsdMeta">Federal Reserve broad trade-weighted USD index · not ICE DXY</div><div class="market-tile-glyph">$</div></article>
             <article class="market-tile mood" id="tileMood"><h2>Market Mood</h2><div class="market-tile-value" id="marketMoodValue">Unavailable</div><div class="market-tile-change flat" id="marketMoodChange">VIX reading required</div><div class="market-tile-meta" id="marketMoodMeta">A simple indicator derived from the latest VIX close when available.</div><div class="market-tile-glyph">◒</div></article>
             <article class="market-tile vix" id="tileVix"><h2>VIX</h2><div class="market-tile-value" id="marketVixValue">—</div><div class="market-tile-change flat" id="marketVixChange">Waiting for data</div><div class="market-tile-meta" id="marketVixMeta">CBOE Volatility Index · daily close</div><div class="market-tile-glyph">▥</div></article>
           </div>
-          <div class="market-scene-note" id="marketDashboardNote">Loading market references. Index and VIX endpoint access depends on your provider subscription. DXY is not part of the current provider adapter and will remain clearly marked until a DXY feed is configured.</div>
-          <div class="market-source-line"><span id="marketSourceLine">Data source: Alpha Vantage · daily close / reference observations</span><span id="marketLastUpdated">Last updated: not yet loaded</span></div>
+          <div class="market-scene-note" id="marketDashboardNote">Market references are sourced from public FRED/EIA and World Bank Pink Sheet datasets. Gold and Silver are monthly averages; Brent and the Broad USD Index are daily. Direct Dow, S&P 500, Nasdaq Composite and VIX values require authorized display rights and are not replaced with proxies.</div>
+          <div class="market-source-line"><span id="marketSourceLine">Data sources: FRED/EIA + World Bank Pink Sheet · public reference observations</span><span id="marketLastUpdated">Last updated: not yet loaded</span></div>
         </div>
       </section>
 
@@ -643,6 +641,7 @@ function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   $('page-'+name).classList.add('active');
   if(name==='markets') window.loadMarketDashboard?.();
+  if(name==='controller') window.loadFinanceDashboard?.();
   document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===name));
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -841,8 +840,8 @@ renderInvestigation();
       renderDataSources(dataSourcesCache);
       renderConnectorCatalog(connectorsCache);
       renderControllerDashboard();
-      await loadFinanceDashboard();
       hideAuthGate();
+      loadFinanceDashboard();
       loadMarketDashboard();
       const note = overview.data_quality_note || 'Overview data loaded from the deployed API.';
       showBanner(note, false);
@@ -1022,118 +1021,72 @@ renderInvestigation();
     const rows = [...active].sort((a,b)=>(Number(b.impact_amount)||0)-(Number(a.impact_amount)||0)).slice(0,8);
     const body = byId('financeRecentAlerts');
     if (body) body.innerHTML = rows.length ? rows.map(x => `<tr data-exception-id="${escapeHtml(x.id)}"><td><strong>${escapeHtml(x.title)}</strong><br><span class="muted">${escapeHtml(x.id)}</span></td><td>${escapeHtml(x.material_id || '—')}</td><td><strong>${escapeHtml(displayImpact(x))}</strong></td><td><span class="finance-pill ${escapeHtml(String(x.priority || '').toLowerCase())}">${escapeHtml(x.priority || '—')}</span></td><td>${x.root_cause_found ? 'Confirmed' : 'Unresolved'}</td><td>${escapeHtml(statusLabel(x.status))}</td></tr>`).join('') : '<tr><td colspan="6" class="muted">No active exception records.</td></tr>';
+    const note = byId('financeDataNote');
+    if (note) note.dataset.registerSummary = `${exceptionsCache.length} exception records and ${actionsCache.length} action records are connected live from the backend.`;
   }
 
-  function financeFormat(value, currency, percent=false) {
-    if (percent) return Number.isFinite(Number(value)) ? `${Number(value).toFixed(1)}%` : '—';
-    return moneyValue(value, currency || 'USD');
+  function financeMoney(value, currency='USD') { return moneyValue(value, currency); }
+  function financePanel(selector, html) {
+    const panel=selector.includes(' ')?document.querySelector(selector):byId(selector); if(panel) panel.innerHTML=html;
   }
-
-  function financeMetricText(metric, percent=false) {
-    if (!metric || metric.status !== 'available') {
-      if (metric?.status === 'multi_currency') return (metric.by_currency || []).map(x=>`${x.currency} ${financeFormat(x.value,x.currency,percent)}`).join(' · ');
-      return 'Awaiting finance pack';
-    }
-    return financeFormat(metric.value, metric.currency, percent);
+  function financeBarMarkup(rows, currency='USD', formatter=null) {
+    if(!rows?.length) return '<div class="finance-placeholder"><strong>No category data</strong><small>No observations were returned for this selection.</small></div>';
+    const max=Math.max(1,...rows.map(x=>Math.abs(Number(x.value)||0)));
+    return `<div class="finance-bars">${rows.map((r,i)=>{const tone=i===0?'':'green';const w=Math.max(1,Math.abs(Number(r.value)||0)/max*100);const shown=formatter?formatter(r.value,r):financeMoney(r.value,currency);return `<div class="finance-bar-row"><span>${escapeHtml(r.name||r.label||'—')}</span><div class="finance-bar-track"><div class="finance-bar-fill ${tone}" style="width:${w.toFixed(1)}%"></div></div><strong class="finance-bar-value">${escapeHtml(shown)}</strong></div>`}).join('')}</div>`;
   }
-
-  function financeMetricMeta(metric, fallback) {
-    if (!metric) return fallback;
-    if (metric.status === 'available') return `Source: Finance Reporting Pack · ${metric.currency}`;
-    return metric.message || fallback;
+  function financeLineSvg(points, series, currency='USD') {
+    if(!Array.isArray(points)||points.length<2) return '<div class="finance-placeholder"><strong>Not enough periods</strong><small>At least two monthly periods are needed for a trend.</small></div>';
+    const w=620,h=180,l=66,r=12,t=12,b=28;
+    const vals=points.flatMap(p=>series.map(s=>Number(p[s.key])||0));
+    const min=Math.min(0,...vals),max=Math.max(1,...vals),span=max-min||1;
+    const x=i=>l+(i/(points.length-1))*(w-l-r), y=v=>t+(1-(v-min)/span)*(h-t-b);
+    const colors=['#2563eb','#16a36a','#d18a18'];
+    const grid=[0,.5,1].map(k=>{const val=max-k*span, yy=y(val);return `<line x1="${l}" y1="${yy}" x2="${w-r}" y2="${yy}" stroke="#e8edf4"/><text x="${l-7}" y="${yy+3}" text-anchor="end">${escapeHtml(marketNum(val,0))}</text>`}).join('');
+    const lines=series.map((s,idx)=>{const path=points.map((p,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(Number(p[s.key])||0).toFixed(1)}`).join(' ');return `<path d="${path}" fill="none" stroke="${colors[idx%colors.length]}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`}).join('');
+    const labels=`<text x="${l}" y="${h-5}">${escapeHtml(points[0].label||points[0].period)}</text><text x="${w-r}" y="${h-5}" text-anchor="end">${escapeHtml(points.at(-1).label||points.at(-1).period)}</text>`;
+    const legend=series.map((s,i)=>`<span><i style="background:${colors[i%colors.length]}"></i>${escapeHtml(s.label)}</span>`).join('');
+    return `<svg class="finance-plot" viewBox="0 0 ${w} ${h}" role="img" aria-label="Monthly finance trend">${grid}${lines}${labels}</svg><div class="finance-legend">${legend}</div>`;
   }
-
-  function renderFinancePlaceholder(targetId, title, detail) {
-    const target=byId(targetId); if(!target)return;
-    target.innerHTML=`<div class="finance-placeholder"><div class="ph-icon">◌</div><strong>${escapeHtml(title)}</strong><small>${escapeHtml(detail)}</small></div>`;
+  function renderFinanceDashboard(data) {
+    const currency=data.currency||'USD', k=data.kpis||{};
+    const kpiValues=[k.revenue,k.gross_profit,k.net_profit,k.operating_expenses,k.operating_cash_flow];
+    document.querySelectorAll('.finance-kpi').forEach((card,i)=>{
+      const strong=card.querySelector('strong'), small=card.querySelector('small');
+      if(strong){strong.classList.remove('finance-unmapped');strong.textContent=i===5?`${Number(k.net_profit_margin||0).toFixed(1)}%`:financeMoney(kpiValues[i],currency);}
+      if(small){const labels=[`${data.period_label} · ${currency}`, 'Synthetic revenue less cost of sales', 'Synthetic illustrative P&L', 'Synthetic illustrative operating spend', 'Synthetic illustrative operating cash flow', 'Net profit / revenue'];small.textContent=labels[i]||'DEMO data';}
+    });
+    if(byId('financeModeBadge')) byId('financeModeBadge').textContent='DEMO DATA · SYNTHETIC';
+    if(byId('financeDataNote')) byId('financeDataNote').textContent=`${data.data_notice||'DEMO DATA — synthetic illustrative figures.'} ${data.selected_period_note||''} ${byId('financeDataNote').dataset.registerSummary||''}`;
+    if(byId('financeRegisterCount')) byId('financeRegisterCount').textContent=`${data.source_window?.periods||0} demo months · ${exceptionsCache.length} live exceptions`;
+    if(byId('financeActiveExceptions')) byId('financeActiveExceptions').textContent=String(k.open_exception_count??0);
+    if(byId('financeUnresolved')) byId('financeUnresolved').textContent=String(k.unresolved_exception_count??0);
+    if(byId('financeOpenActions')) byId('financeOpenActions').textContent=String(k.open_action_count??0);
+    const trend=data.revenue_trend||[];
+    financePanel('finance-revenue .finance-panel-body',financeLineSvg(trend,[{key:'actual',label:'Revenue actual'},{key:'budget',label:'Revenue budget'}],currency));
+    financePanel('finance-profitability .finance-panel-body',financeLineSvg(data.profit_trend||[],[{key:'gross_profit',label:'Gross profit'},{key:'net_profit',label:'Net profit'}],currency));
+    financePanel('finance-revenue-mix .finance-panel-body',financeBarMarkup(data.revenue_categories||[],currency));
+    financePanel('finance-expenses .finance-panel-body',financeBarMarkup(data.expense_categories||[],currency));
+    financePanel('finance-expense-top .finance-panel-body',financeBarMarkup((data.expense_categories||[]).slice(0,5),currency));
+    const cash=data.cash_flow||[];
+    financePanel('finance-cashflow .finance-panel-body',cash.length?`<table class="finance-data-table"><thead><tr><th>Period</th><th>Operating</th><th>Investing</th><th>Financing</th></tr></thead><tbody>${cash.slice(-6).map(r=>`<tr><td>${escapeHtml(r.label)}</td><td>${escapeHtml(financeMoney(r.operating,currency))}</td><td>${escapeHtml(financeMoney(r.investing,currency))}</td><td>${escapeHtml(financeMoney(r.financing,currency))}</td></tr>`).join('')}</tbody></table>`:'<div class="finance-placeholder"><strong>No cash flow observations</strong></div>');
+    const budget=data.budget_vs_actual||[];
+    financePanel('finance-budget .finance-panel-body',budget.length?`<div class="finance-bars">${budget.map(r=>{const max=Math.max(1,Number(r.actual)||0,Number(r.budget)||0);return `<div><div class="finance-bar-row"><span>${escapeHtml(r.name)} · Actual</span><div class="finance-bar-track"><div class="finance-bar-fill" style="width:${Math.max(1,Number(r.actual)||0)/max*100}%"></div></div><strong class="finance-bar-value">${escapeHtml(financeMoney(r.actual,currency))}</strong></div><div class="finance-bar-row"><span>Budget</span><div class="finance-bar-track"><div class="finance-bar-fill amber" style="width:${Math.max(1,Number(r.budget)||0)/max*100}%"></div></div><strong class="finance-bar-value">${escapeHtml(financeMoney(r.budget,currency))}</strong></div><div class="finance-source-foot">Variance: ${escapeHtml(financeMoney(r.variance,currency))}</div></div>`}).join('')}</div>`:'<div class="finance-placeholder"><strong>Budget unavailable</strong></div>');
+    const accounts=data.accounts||[];
+    financePanel('finance-accounts .finance-panel-body',accounts.length?`<table class="finance-data-table"><thead><tr><th>Account</th><th>Type</th><th>Balance</th></tr></thead><tbody>${accounts.map(a=>`<tr><td>${escapeHtml(a.name)}</td><td>${escapeHtml(a.type)}</td><td>${escapeHtml(financeMoney(a.amount,currency))}</td></tr>`).join('')}</tbody></table>`:'<div class="finance-placeholder"><strong>No account balances</strong></div>');
+    const prof=data.profitability_summary||[];
+    const profHtml=prof.length?`${financeBarMarkup(prof.map(p=>({name:p.name,value:p.value})),currency,(v)=>`${Number(v).toFixed(1)}%`)}<div class="finance-source-foot">Three-month illustrative forecast: ${(data.forecast||[]).map(f=>`${escapeHtml(f.period_label)} ${escapeHtml(financeMoney(f.net_profit,currency))}`).join(' · ')}</div>`:'<div class="finance-placeholder"><strong>Profitability summary unavailable</strong></div>';
+    financePanel('finance-forecast .finance-panel-body',profHtml);
+    const alerts=data.alerts||[], body=byId('financeRecentAlerts');
+    if(body) body.innerHTML=alerts.length?alerts.map(x=>`<tr data-exception-id="${escapeHtml(x.id)}"><td><strong>${escapeHtml(x.title)}</strong><br><span class="muted">${escapeHtml(x.id)}</span></td><td>${escapeHtml(x.material_id||'—')}</td><td><strong>${escapeHtml(moneyValue(x.impact_amount,x.currency))}</strong></td><td><span class="finance-pill ${escapeHtml(String(x.priority||'').toLowerCase())}">${escapeHtml(x.priority||'—')}</span></td><td>${x.root_cause_found?'Confirmed':'Unresolved'}</td><td>${escapeHtml(statusLabel(x.status))}</td></tr>`).join(''):'<tr><td colspan="6" class="muted">No active exception records.</td></tr>';
+    const periodText=byId('finance-overview')?.querySelector('.finance-section-head p'); if(periodText) periodText.textContent=`${data.period_label} · ${data.entity||'All entities'} · ${currency} · fictional sample company`;
   }
-
-  function renderFinanceBars(targetId, rows, series, labelKey='label', emptyTitle='No mapped rows', emptyDetail='Upload the required sheet in the Finance Reporting Pack.') {
-    const target=byId(targetId); if(!target)return;
-    if(!rows?.length){renderFinancePlaceholder(targetId,emptyTitle,emptyDetail);return;}
-    const activeSeries=series.filter(s=>rows.some(r=>r[s.key]!==null && r[s.key]!==undefined && Number.isFinite(Number(r[s.key]))));
-    const usableRows=rows.filter(r=>activeSeries.some(s=>r[s.key]!==null && r[s.key]!==undefined && Number.isFinite(Number(r[s.key]))));
-    if(!usableRows.length){renderFinancePlaceholder(targetId,emptyTitle,emptyDetail);return;}
-    const max=Math.max(1,...usableRows.flatMap(r=>activeSeries.filter(s=>r[s.key]!==null && r[s.key]!==undefined).map(s=>Math.abs(Number(r[s.key])||0))));
-    target.innerHTML=`<div class="finance-data-list">${activeSeries.length>1?`<div class="finance-data-legend">${activeSeries.map(s=>`<span>${escapeHtml(s.label)}</span>`).join('')}</div>`:''}${usableRows.slice(0,9).map(row=>{
-      const bars=activeSeries.filter(s=>row[s.key]!==null && row[s.key]!==undefined).map(s=>{const i=activeSeries.indexOf(s);const n=Number(row[s.key])||0;const width=Math.max(Math.abs(n)>0?1:0,Math.abs(n)/max*100);return `<div style="display:flex;align-items:center;gap:7px;margin:2px 0"><div class="finance-data-track" style="flex:1"><div class="finance-data-fill ${i===1?'secondary':i===2?'tertiary':''}" style="width:${width.toFixed(1)}%"></div></div><span class="finance-data-value">${escapeHtml(financeFormat(n,row.currency))}</span></div>`;}).join('');
-      return `<div class="finance-data-row"><div>${escapeHtml(row[labelKey]||'—')}${row.currency?`<br><small>${escapeHtml(row.currency)}</small>`:''}</div><div>${bars}</div><div></div></div>`;
-    }).join('')}</div>`;
-  }
-
-  function renderFinanceSummary(targetId, rows, keys, emptyTitle, emptyDetail) {
-    const target=byId(targetId); if(!target)return;
-    if(!rows?.length){renderFinancePlaceholder(targetId,emptyTitle,emptyDetail);return;}
-    const row=rows[0];
-    target.innerHTML=`<div class="finance-data-summary">${keys.map(k=>`<div><label>${escapeHtml(k.label)}</label><strong>${escapeHtml(financeFormat(row[k.key],row.currency,k.percent||false))}</strong><small>${escapeHtml(row.currency||'')}</small></div>`).join('')}</div>`;
-  }
-
   async function loadFinanceDashboard() {
     const note=byId('financeDataNote');
-    try {
-      const params=new URLSearchParams();
-      const from=byId('financeFromDate')?.value || '';
-      const to=byId('financeToDate')?.value || '';
-      const entity=byId('financeEntity')?.value || 'All Entities';
-      const currency=byId('financeCurrency')?.value || '';
-      if(from)params.set('from_date',from); if(to)params.set('to_date',to);
-      if(entity && entity!=='All Entities')params.set('entity',entity);
-      if(currency)params.set('currency',currency);
-      const query=params.toString();
-      const result=await request(`${API}/finance/dashboard${query?`?${query}`:''}`);
-      const currencySelect=byId('financeCurrency');
-      if(currencySelect){
-        const selected=result.selected_currency || currencySelect.value || '';
-        const options=['<option value="">All Currencies</option>',...(result.currencies||[]).map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`)];
-        currencySelect.innerHTML=options.join(''); currencySelect.value=selected;
-      }
-      const entitySelect=byId('financeEntity');
-      if(entitySelect && Array.isArray(result.entities)){
-        const selectedEntity=result.selected_entity && result.selected_entity!=='All Entities' ? result.selected_entity : 'All Entities';
-        entitySelect.innerHTML=['<option value="All Entities">All Entities</option>',...result.entities.map(e=>`<option value="${escapeHtml(e)}">${escapeHtml(e)}</option>`) ].join('');
-        entitySelect.value=selectedEntity;
-      }
-      const statusChip=byId('financeApiStatusChip');
-      if(statusChip){
-        const ready=result.status==='available';
-        statusChip.textContent=ready?'Finance data loaded':(result.status==='missing_source'?'Upload finance pack':'Finance pack incomplete');
-        statusChip.className=`chip ${ready?'green':'amber'}`;
-      }
-      const k=result.kpis||{};
-      const map=[['revenue','financeKpiRevenue','financeKpiRevenueMeta',false],['gross_profit','financeKpiGrossProfit','financeKpiGrossProfitMeta',false],['net_profit','financeKpiNetProfit','financeKpiNetProfitMeta',false],['operating_expenses','financeKpiOpex','financeKpiOpexMeta',false],['operating_cash_flow','financeKpiOcf','financeKpiOcfMeta',false],['net_profit_margin','financeKpiMargin','financeKpiMarginMeta',true]];
-      map.forEach(([key,valueId,metaId,percent])=>{
-        const metric=k[key], node=byId(valueId), meta=byId(metaId); if(!node)return;
-        const ok=metric?.status==='available' || metric?.status==='multi_currency';
-        node.textContent=financeMetricText(metric,percent); node.classList.toggle('finance-unmapped',!ok);
-        if(meta)meta.textContent=financeMetricMeta(metric,'Awaiting mapped finance data');
-      });
-      const multiple=(result.currencies||[]).length>1 && !result.selected_currency;
-      if(multiple){
-        ['financeRevenueTrend','financeProfitTrend','financeRevenueMix','financeExpensesBreakdown','financeCashFlow','financeTopExpenses','financeBudgetActual','financeAccountBalances','financeProfitSummary'].forEach(id=>renderFinancePlaceholder(id,'Select a currency to compare values','The pack contains multiple currencies. Choose one in the Currency filter; no FX conversion is applied.'));
-      } else {
-        const fmtRows=(rows)=>rows||[];
-        renderFinanceBars('financeRevenueTrend',fmtRows(result.revenue_trend),[{key:'actual',label:'Actual'},{key:'budget',label:'Budget'}],'period','No revenue actuals','Upload P&L actual rows classified as REVENUE.');
-        renderFinanceBars('financeProfitTrend',fmtRows(result.profitability_trend),[{key:'gross_profit',label:'Gross profit'},{key:'net_profit',label:'Net profit'}],'period','No profitability trend','Revenue, COGS and remaining P&L lines are required.');
-        renderFinanceBars('financeRevenueMix',fmtRows(result.revenue_by_category),[{key:'value',label:'Revenue'}],'label','No revenue categories','Add CATEGORY values to P&L revenue rows.');
-        renderFinanceBars('financeExpensesBreakdown',fmtRows(result.expenses_by_category),[{key:'value',label:'Expense'}],'label','No expense categories','Upload COGS and expense actuals with CATEGORY values.');
-        const cashRows=(result.cash_flow_by_period||[]).map(x=>({...x,label:x.period}));
-        renderFinanceBars('financeCashFlow',cashRows,[{key:'operating',label:'Operating'},{key:'investing',label:'Investing'},{key:'financing',label:'Financing'}],'period','No classified cash-flow rows','Upload CASH_FLOW rows with OPERATING, INVESTING or FINANCING classification.');
-        renderFinanceBars('financeTopExpenses',fmtRows(result.expenses_by_category),[{key:'value',label:'Expense'}],'label','No expense categories','Upload expense actuals with category labels.');
-        const budgetRows=(result.budget_vs_actual||[]).map(x=>({...x,label:`${x.period} · ${x.category}`}));
-        renderFinanceBars('financeBudgetActual',budgetRows,[{key:'actual',label:'Actual'},{key:'budget',label:'Budget'}],'label','No budget comparison','Upload approved BUDGET rows with matching period, currency and category values.');
-        renderFinanceBars('financeAccountBalances',fmtRows(result.account_balances),[{key:'value',label:'Closing balance'}],'label','No account balances','Upload TRIAL_BALANCE rows classified as CASH, ACCOUNTS_RECEIVABLE, ACCOUNTS_PAYABLE, INVENTORY or OTHER.');
-        renderFinanceSummary('financeProfitSummary',result.profitability_summary,[{key:'gross_profit',label:'Gross profit'},{key:'operating_profit',label:'Operating profit'},{key:'net_profit',label:'Net profit'}],'No profitability summary','P&L actual rows have not been uploaded or are outside the selected filters.');
-      }
-      if(note){
-        if(result.status==='missing_source')note.textContent=result.message;
-        else note.textContent=`Finance Reporting Pack: ${result.ingestion_count} upload(s), ${result.row_count} rows. Period ${result.from_period||'all available'} to ${result.to_period||'latest'} · Entity ${result.selected_entity||'All Entities'} · Currency ${result.selected_currency||'all'}. ${result.message}${(result.warnings||[]).length?' Warnings: '+result.warnings.join(' '):''}`;
-      }
-      if(byId('financeRegisterCount'))byId('financeRegisterCount').textContent=`${result.row_count||0} finance rows · ${result.ingestion_count||0} pack(s)`;
-    } catch(error) {
-      if(note)note.textContent=`Finance dashboard API unavailable: ${error.message}. The rest of the workspace may still be connected.`;
-      const statusChip=byId('financeApiStatusChip'); if(statusChip){statusChip.textContent='Finance API unavailable';statusChip.className='chip red';}
-      ['financeKpiRevenue','financeKpiGrossProfit','financeKpiNetProfit','financeKpiOpex','financeKpiOcf','financeKpiMargin'].forEach(id=>{if(byId(id))byId(id).textContent='API unavailable';});
-    }
+    if(note && !note.textContent.includes('DEMO DATA')) note.textContent='Loading synthetic finance demonstration dataset…';
+    const from=byId('financeFromDate')?.value||'',to=byId('financeToDate')?.value||'',entity=byId('financeEntity')?.value||'All Entities';
+    const params=new URLSearchParams(); if(from)params.set('from',from); if(to)params.set('to',to); if(entity)params.set('entity',entity);
+    try { const data=await request(`${API}/controller/dashboard?${params.toString()}`); renderFinanceDashboard(data); }
+    catch(error) { if(note) note.textContent=`Finance dashboard data could not be loaded: ${error.message}. Check the Controller API route and Render logs.`; }
   }
 
   function renderLineChart(targetId, points, dateKey, valueKey) {
@@ -1208,12 +1161,13 @@ renderInvestigation();
     if (!item || item.status !== 'available') {
       if(valueNode) valueNode.textContent='Unavailable';
       if(changeNode){changeNode.textContent=item?.detail || 'Provider data unavailable';changeNode.className='market-tile-change flat';}
+      if(metaNode) metaNode.textContent=[item?.unit,item?.source].filter(Boolean).join(' · ') || 'No authorized source connected';
       if(metaNode && item?.date) metaNode.textContent=`Latest attempted observation: ${item.date}`;
       return;
     }
     if(valueNode) valueNode.textContent=`${unit}${marketNum(item.value)}`;
     if(changeNode){changeNode.textContent=changeLabel(item.change_percent);changeNode.className=`market-tile-change ${Number(item.change_percent)>0?'up':Number(item.change_percent)<0?'down':'flat'}`;}
-    if(metaNode) metaNode.textContent=`${item.unit || item.frequency || 'Daily reference'} · ${item.date || 'Date unavailable'}`;
+    if(metaNode) metaNode.textContent=`${item.unit || item.frequency || 'Reference'} · ${item.frequency || 'Observation'} · ${item.date || 'Date unavailable'}${item.stale?' · STALE CACHE':''} · ${item.source || ''}`;
   }
   function renderMarketDashboard(payload) {
     const stocks=payload.cards?.us_stocks || {};
@@ -1231,29 +1185,29 @@ renderInvestigation();
     const usd=payload.cards?.usd_index || {};
     if(byId('marketUsdValue')) byId('marketUsdValue').textContent=usd.status==='available'?marketNum(usd.value):'Not connected';
     if(byId('marketUsdChange')) byId('marketUsdChange').textContent=usd.status==='available'?changeLabel(usd.change_percent):(usd.detail || 'DXY feed required');
-    if(byId('marketUsdMeta')) byId('marketUsdMeta').textContent=usd.unit || 'Current provider adapter does not include DXY';
+    if(byId('marketUsdMeta')) byId('marketUsdMeta').textContent=usd.status==='available'?`${usd.unit} · ${usd.frequency} · ${usd.date} · ${usd.source}${usd.stale?' · STALE CACHE':''}`:(usd.detail || 'Broad USD series unavailable');
     const vix=payload.cards?.vix || {};
     if(byId('marketVixValue')) byId('marketVixValue').textContent=vix.status==='available'?marketNum(vix.value):'Unavailable';
     if(byId('marketVixChange')) {byId('marketVixChange').textContent=vix.status==='available'?changeLabel(vix.change_percent):(vix.detail || 'Premium VIX index access required');byId('marketVixChange').className=`market-tile-change ${vix.status==='available'?(Number(vix.change_percent)>0?'up':Number(vix.change_percent)<0?'down':'flat'):'flat'}`;}
-    if(byId('marketVixMeta')) byId('marketVixMeta').textContent=vix.status==='available'?`CBOE VIX · ${vix.date}`:'CBOE Volatility Index · daily close';
+    if(byId('marketVixMeta')) byId('marketVixMeta').textContent=vix.status==='available'?`CBOE VIX · ${vix.date}`:(vix.detail || 'CBOE Volatility Index · daily close');
     const mood=payload.cards?.market_mood || {};
     if(byId('marketMoodValue')) byId('marketMoodValue').textContent=mood.status==='available'?mood.label:'Unavailable';
     if(byId('marketMoodChange')) byId('marketMoodChange').textContent=mood.status==='available'?`VIX close ${marketNum(mood.vix_value)}`:(mood.detail || 'VIX reading required');
     if(byId('marketMoodMeta')) byId('marketMoodMeta').textContent=mood.method || 'Derived signal; not a provider consensus indicator';
     const notes=payload.notes || [];
     if(byId('marketDashboardNote')) byId('marketDashboardNote').textContent=notes.join(' ');
-    if(byId('marketSourceLine')) byId('marketSourceLine').textContent=`Data source: ${payload.source || 'Alpha Vantage'} · ${payload.frequency || 'Daily reference observations'}`;
+    if(byId('marketSourceLine')) byId('marketSourceLine').textContent=`Data source: ${payload.source || 'Public reference feeds'} · ${payload.frequency || 'Daily/monthly observations'} · ${payload.available_cards ?? '—'} available tiles`; 
     if(byId('marketLastUpdated')) byId('marketLastUpdated').textContent=`Last updated: ${payload.generated_at || 'timestamp unavailable'}`;
   }
   async function loadMarketDashboard() {
     const note=byId('marketDashboardNote');
-    if(note) note.textContent='Retrieving market reference data from the configured provider…';
+    if(note) note.textContent='Retrieving public market reference data. Successful responses are cached; provider failures are suppressed to avoid repeated requests.';
     try {
       const payload=await request(`${API}/market/dashboard`);
       renderMarketDashboard(payload);
     } catch(error) {
       const message=error.message || 'Market data could not be retrieved.';
-      if(note) note.textContent=`${message} Add MARKET_DATA_API_KEY to the Render web service environment. Prices are never filled with sample values.`;
+      if(note) note.textContent=`${message} Public reference feeds may be temporarily unavailable. Prices are never filled with sample values.`;
       ['marketGoldValue','marketSilverValue','marketBrentValue','marketVixValue'].forEach(id=>{if(byId(id))byId(id).textContent='Unavailable';});
       if(byId('marketStocksStatus')) byId('marketStocksStatus').textContent=message;
       if(byId('marketMoodValue')) byId('marketMoodValue').textContent='Unavailable';
@@ -1344,7 +1298,7 @@ renderInvestigation();
 
   window.uploadExtract = async (file) => {
     if (!modulesCache.length) { toast('Module catalog is not available. Refresh and try again.'); return; }
-    const choices = modulesCache.map(m => `${m.key} — ${m.name || m.role || 'Module'}`).join('\n');
+    const choices = modulesCache.map(m => `${m.key} — ${m.name}`).join('\n');
     const moduleKey = prompt(`Enter the module key for this extract:\n\n${choices}`, 'plant-controller');
     if (!moduleKey) return;
     const chosen = modulesCache.find(m => m.key.toLowerCase() === moduleKey.trim().toLowerCase());
@@ -1401,12 +1355,11 @@ renderInvestigation();
   });
   byId('exceptionSearch')?.addEventListener('input', () => renderExceptions(exceptionsCache));
   byId('ctrlTopExceptions')?.addEventListener('click', event => { const row=event.target.closest('tr[data-exception-id]'); if(row) openApiInvestigation(row.dataset.exceptionId); });
-  byId('financeFromDate')?.addEventListener('change',()=>loadFinanceDashboard());
-  byId('financeToDate')?.addEventListener('change',()=>loadFinanceDashboard());
-  byId('financeEntity')?.addEventListener('change',()=>loadFinanceDashboard());
-  byId('financeCurrency')?.addEventListener('change',()=>loadFinanceDashboard());
   byId('financeRecentAlerts')?.addEventListener('click', event => { const row=event.target.closest('tr[data-exception-id]'); if(row) openApiInvestigation(row.dataset.exceptionId); });
-  byId('controllerRefreshBtn')?.addEventListener('click', async () => { const ok=await loadApiData(); if(ok) toast('Controller visuals refreshed from current API records.'); });
+  byId('controllerRefreshBtn')?.addEventListener('click', async () => { await loadFinanceDashboard(); toast('Controller finance dashboard refreshed.'); });
+  byId('financeFromDate')?.addEventListener('change', loadFinanceDashboard);
+  byId('financeToDate')?.addEventListener('change', loadFinanceDashboard);
+  byId('financeEntity')?.addEventListener('change', loadFinanceDashboard);
   document.querySelectorAll('[data-market-tab]').forEach(btn=>btn.addEventListener('click',()=>{
     document.querySelectorAll('[data-market-tab]').forEach(x=>x.classList.toggle('active',x===btn));
     const metals=btn.dataset.marketTab==='metals'; byId('marketEquitiesPane').hidden=metals; byId('marketMetalsPane').hidden=!metals;
@@ -1444,6 +1397,7 @@ renderInvestigation();
   });
 
   window.loadMarketDashboard = loadMarketDashboard;
+  window.loadFinanceDashboard = loadFinanceDashboard;
   loadApiData().then(ok => { if (!ok && byId('authGate') && !byId('authGate').hidden) byId('apiKeyInput')?.focus(); });
 })();
 </script>
