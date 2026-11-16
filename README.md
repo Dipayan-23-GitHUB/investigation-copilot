@@ -123,6 +123,7 @@ GROQ_API_KEY=your_key_here
 GROQ_MODEL=openai/gpt-oss-20b
 GROQ_BASE_URL=https://api.groq.com/openai/v1
 MARKET_DATA_API_KEY=your_alpha_vantage_key_here  # Optional; server-side only
+TWELVE_DATA_API_KEY=your_twelve_data_key_here  # Optional; server-side only; enables NSE and other exchanges in the Market explorer
 ```
 
 The endpoint uses structured JSON output and checks model-provided evidence IDs against IDs already present in the server's investigation object. The model does not have database credentials or direct write tools. API calls fail clearly if no key is configured. In production, add request budgeting, retries with limits, rate limits, PII/data minimization, prompt/version tracking, latency monitoring, and model-evaluation tests. The response is advice, not a financial posting or ERP action.
